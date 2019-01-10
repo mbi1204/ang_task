@@ -4,11 +4,13 @@ import {Routes, RouterModule} from '@angular/router';
 //Componentes
 
 import { LoginComponent } from '../app/component/login/login.component';
+import { MenuComponent } from '../app/component/menu/menu.component';
 
 const appRoutes: Routes=[
     {path:'', component : LoginComponent},
-    {path:'', redirectTo : 'tienda', pathMatch: 'full'},
-    {path:'tienda', component : LoginComponent},
+    {path:'', redirectTo : 'login', pathMatch: 'full'},
+    {path:'login', component : LoginComponent},
+    {path:'menu' , component : MenuComponent},
     {path:'**', component : LoginComponent},
     
 ];

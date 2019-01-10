@@ -8,11 +8,14 @@ import { AppComponent } from './app.component';
 
 //componentes
 import { LoginComponent } from '../app/component/login/login.component';
+import { MenuComponent } from '../app/component/menu/menu.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
