@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing , appRoutingProviders } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { TareaComponent} from '..//app/component/tarea/tarea.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     routing
   ],
   providers: [appRoutingProviders],
