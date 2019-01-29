@@ -1,1 +1,41 @@
-<h1>Estatus</h1>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="text-center" >
+    <h1>Estatus</h1>
+  </div>
+</nav>
+  <div class="span6 fondo-color">
+  <div class="text-center" >
+      <h3>Gestiona el nivel de estus de tus proyectos</h3>
+
+    <div class="bg-img"> 
+      <img src="../assets/imagenes/estatus.png" id="bg-img" alt="">
+    </div>
+    
+    <br>
+    <hr>
+
+      <form class="form-inline">
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preferencia</label>
+            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+              <option selected>Selecciona...</option>
+              <option value="1">Sin Iniciar</option>
+              <option value="2">En proceso</option>
+              <option value="3">Pendiente</option>
+              <option value="4">Terminado</option>
+              <option value="5">Diferido</option>
+            </select>
+          
+        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="customControlInline">
+            <label class="custom-control-label" for="customControlInline">Activo</label>
+        </div>
+          
+        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="customControlInline">
+            <label class="custom-control-label" for="customControlInline">Inactivo</label>
+            
+        </div>
+        <br>
+          <button type="submit" class="btn btn-primary my-1">Submit</button>
+          
+      </form>

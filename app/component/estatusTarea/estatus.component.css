@@ -1,0 +1,45 @@
+.fondo-color{
+    padding: 100px 100px 100px 100px;
+    background: rgb(255, 206, 214);
+    width: 100%;
+}
+.text-center{
+    background: pink;
+    margin-top: 5px; 
+    color: black;
+}
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+
+}
+.bg-dark {
+    background-color: #6c8399!important;
+}
+@media (min-width: 768px)
+.navbar-expand-md {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+
+}
+
+#bg-img {
+  position: relative; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  width: 40%;
+  min-width: 5%;
+  min-height: 5%;
+}
+
+
+
+  

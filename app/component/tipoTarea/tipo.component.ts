@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router } from '@angular/router';
+
 @Component({
     selector :'tipo',
     templateUrl:'tipo.component.html',

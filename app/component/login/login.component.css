@@ -1,8 +1,13 @@
-html,
-body {
-  height: 100%;
+body{
+  background: url('/assets/imagenes/tarea.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
 
+/*
 body {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -15,8 +20,7 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
+}*/
 
 .form-signin {
   width: 100%;
@@ -46,4 +50,21 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.row{
+  margin-top: 0%;
+
+  
+ }
+ 
+
+
+#col-Login{
+  align-items: center;
+  flex-direction: center; 
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
 }

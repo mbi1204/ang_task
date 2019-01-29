@@ -1,1 +1,71 @@
-<h1>Tipo</h1>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="text-center" >
+        <h1>Tipo de Tarea</h1>
+    </div>
+</nav>
+    <div class="span6 fondo-color">
+    <div class="text-center" >
+            <h3>¿Que tipo de tarea estas por realizar?</h3>
+           
+            <p>
+                 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                      Adecuacion
+                 </button> 
+            </p>
+            <div class="collapse" id="collapse1">
+                <div class="card card-body">
+                        Es el proceso de adaptación o ajuste mediante nuevas condiciones.
+                </div>
+            </div>   
+
+            <p>
+                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                         Correccion
+                </button>
+            </p>
+               <div class="collapse" id="collapse2">
+                   <div class="card card-body">
+                        Modificación que se hace en alguno de los proyectos para corregir ciertos errores.      
+                   </div>
+               </div> 
+
+               <p>
+                    <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                             Soporte
+                    </button>
+                </p>
+               <div class="collapse" id="collapse3">
+                    <div class="card card-body">
+                        .......................                 
+                </div>
+                </div>  
+                
+<form> 
+ <br><br>
+<hr>
+            
+    <form class="form-inline">
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preferencia</label>
+            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <option selected>Selecciona...</option>
+                <option value="1">Adecuacion</option>
+                <option value="2">Correccion</option>
+                <option value="3">Soporte</option>
+                
+            </select>
+                
+        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="customControlInline">
+            <label class="custom-control-label" for="customControlInline">Activo</label>
+        </div>
+                
+        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="customControlInline">
+            <label class="custom-control-label" for="customControlInline">Inactivo</label>
+                
+        </div>
+ <br>
+            <button type="submit" class="btn btn-primary my-1">Guardar</button>
+                
+</form>
+            

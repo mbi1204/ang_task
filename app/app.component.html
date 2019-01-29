@@ -1,4 +1,29 @@
+<nav class="navbar navbar-default"></nav>
+<nav class="navbar-expand-md navbar-dark bg-dark">
+    
+    <h1>Menu</h1>
+        <ul>
+            <span class="glyphicon glyphicon-home"></span>
+            <a [routerLink]= "['/menu']"> Menu</a>
+                            
+            <span class="glyphicon glyphicon-briefcase"></span>
+            <a [routerLink]= "['/cliente']"> Cliente</a>
+                    
+            <span class="glyphicon glyphicon-list-alt"></span>
+            <a [routerLink]= "['/tarea']"> Tarea </a>
+            
+            <span class="glyphicon glyphicon-stats"></span>
+            <a [routerLink]= "['/estatus']"> Estatus Tarea </a>
+            
+            <span class="glyphicon glyphicon-book"></span>
+            <a [routerLink]= "['/tipo']"> Tipo Tarea </a>
+            
+            <span class="glyphicon glyphicon-user"></span>
+            <a [routerLink]= "['/usuario']"> Usuario </a>
+        </ul>
+                 
+</nav>
 
-
-
+      
 <router-outlet></router-outlet>
+<hr>

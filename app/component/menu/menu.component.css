@@ -1,0 +1,57 @@
+
+
+.jumbotron{
+    padding:3px;
+    border-radius: 5px;
+    box-shadow:  purple;
+    width: 20px;
+    height: 10px;
+    color:purple;
+    animation-name: deslizamiento;
+    animation-duration: 8s;
+    animation-iteration-count:infinite;
+}
+@keyframes deslizamiento{
+    from{
+        margin-left:0px;
+    }
+    to{
+        margin-left: 400px;
+        background:#FADBD8;
+    }
+}
+/*sobrea cada submenu
+.navbar-nav .active{
+    border-bottom: 3px solid purple;
+}*/
+/* LINEA DEBAJO DEL MENU
+.container-fluid{
+    border-bottom: 3px solid purple;
+}*/
+
+.container-fluid .navbar-nav>a:hover{
+    transition: all 300ms;
+    border-bottom: 3px solid purple;
+    
+    
+}
+
+
+.fondo-color{
+    padding: 30px 100px 90px 100px;
+    background: rgb(255, 206, 214);
+    width: 100%;
+    
+}
+.col-lg-4{
+    position: relative; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    margin: auto; 
+    width: 20%;
+    min-width: 5%;
+    min-height: 5%;
+  }
+  

@@ -1,0 +1,30 @@
+.fondo-color{
+    padding: 100px 100px 100px 100px;
+    background: rgb(255, 206, 214);
+	width: 100%;
+}
+
+.text{
+   /*background: #6c8399;*/
+    max-width: 100%;
+    color:black;
+}
+
+.fixed-top { 
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+.bg-dark {
+    background-color: #6c8399!important;
+    color:black;
+}
+@media (min-width: 768px)
+.navbar-expand-md {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
