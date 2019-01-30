@@ -28,7 +28,7 @@ export class ClienteComponent {
 
         this._ClienteService.getLista().subscribe((result) => { 
             console.log( "body " + result.body);
-            
+           // 
             respuesta = result.body;
 
             console.log( "oplError " +  respuesta.response.oplError);
