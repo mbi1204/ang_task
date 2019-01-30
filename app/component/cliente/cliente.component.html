@@ -72,7 +72,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let n of numbers; let i = index"> <!--hace una iteracion y agrega un # de indice-->
+                        <!-- imprime valores variable html let of array ts-->
+                        <tr *ngFor="let ctCliente of _ctClientes"> 
+                                <td>{{ctCliente.iCliente}}</td>
+                                <td>{{ctCliente.cCliente}}</td>
+
+                    <!--hace una iteracion y agrega un # de indice-->
+                    <!---
+                    <tr *ngFor="let n of numbers; let i = index"> 
                        <td>{{i + 1 }} Mojarra</td> 
                        <td>MojMfeliz2555</td>
                        <br>
@@ -85,7 +92,9 @@
                             <button  class="btn btn-sm btn-danger">
                                  Eliminar
                             </button> 
-                            
+                         -->
+                         
+                         
                     </tr>
                 </tbody>
             </table>

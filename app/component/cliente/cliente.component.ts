@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router } from '@angular/router';
 import {ClienteService} from '../../service/cliente.service';
+import {ctCliente} from '../../modelos/ctCliente';
 
 
 @Component({
@@ -11,8 +12,10 @@ import {ClienteService} from '../../service/cliente.service';
 
 })
 
-export class ClienteComponent {
-    numbers = new Array(5);
+export class ClienteComponent {   
+
+    public _ctCliente:ctCliente;
+    public _ctClientes:Array<ctCliente> = []; 
 
     constructor( private router: Router,
                private _ClienteService: ClienteService) {
@@ -20,47 +23,47 @@ export class ClienteComponent {
 
     }
 
+    ngOnInit():void{
+        this.lista();
+    }
+
+
 
     lista(){
         console.log("lista()");
 
         var respuesta, lista;
+        this._ctClientes = [];
 
-        this._ClienteService.getLista().subscribe((result) => { 
-            console.log( "body " + result.body);
-           // 
-            respuesta = result.body;
+        //servicio rest (resultado , error)
+        this._ClienteService.getLista().subscribe((result) => {                    
+            //resultado
 
-            console.log( "oplError " +  respuesta.response.oplError);
-            console.log( "opcMensage" + respuesta.response.opcMensage);
+            //guardo la respuesta en una variable del body
+            respuesta = result.body;          
 
+            //guardo la lista en una variable 
             lista = respuesta.response.tt_ctCliente.tt_ctCliente;
-                    
-            lista.forEach(renglon =>{ 
-                console.log ("renglon.iCliente" + renglon.iCliente); 
-                console.log ("renglon.cCliente" + renglon.cCliente); 
-                
-                
-                /*this._ctGrupo = new ctGrupo(
-                item.cCveCia,
-                item.iGrupoID,
-                item.cDescripcion,
-                item.cImagen,
-                item.lActivo,
-                item.dtCreado,
-                item.dtModificado,
-                item.cUsuario,
-                item.iColor  ); */
+
+            // itera la lista del rest para convertir en objetos type script                    
+            lista.forEach(renglon =>{           
+
+                //crea objeto
+                this._ctCliente = new ctCliente(
+                    renglon.iCliente,
+                    renglon.cCliente,
+                    renglon.cRazonS,
+                    renglon.lActivo
+                );               
+               //guarda objeto en la lista
+                this._ctClientes.push(this._ctCliente);
             });
 
-
-
-
         }, (error) => { 
-            console.log("error");
-
+            //error
+            
             alert(error);
-            console.log(error);
+            
         }); //service
 
     } //lista
