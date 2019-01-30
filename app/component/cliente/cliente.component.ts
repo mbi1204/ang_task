@@ -24,12 +24,6 @@ export class ClienteComponent {
     lista(){
         console.log("lista()");
 
-<<<<<<< HEAD
-        this._ClienteService.getLista().subscribe((result) => {
-            console.log( "body " + result.body);
-
-        }, (error) => {
-=======
         var respuesta, lista;
 
         this._ClienteService.getLista().subscribe((result) => { 
@@ -63,7 +57,6 @@ export class ClienteComponent {
 
 
         }, (error) => { 
->>>>>>> 63b4169f75aaa546b85dea2c3a4990252af8b804
             console.log("error");
 
             alert(error);
