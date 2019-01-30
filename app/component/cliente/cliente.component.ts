@@ -12,9 +12,10 @@ import {ClienteService} from '../../service/cliente.service';
 })
 
 export class ClienteComponent {
+    numbers = new Array(5);
 
     constructor( private router: Router,
-               private _ClienteService: ClienteService){
+               private _ClienteService: ClienteService) {
         console.log("cliente Component");
 
     }
@@ -23,10 +24,10 @@ export class ClienteComponent {
     lista(){
         console.log("lista()");
 
-        this._ClienteService.getLista().subscribe((result) => { 
+        this._ClienteService.getLista().subscribe((result) => {
             console.log( "body " + result.body);
-          
-        }, (error) => { 
+
+        }, (error) => {
             console.log("error");
 
             alert(error);
