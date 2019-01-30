@@ -24,10 +24,46 @@ export class ClienteComponent {
     lista(){
         console.log("lista()");
 
+<<<<<<< HEAD
         this._ClienteService.getLista().subscribe((result) => {
             console.log( "body " + result.body);
 
         }, (error) => {
+=======
+        var respuesta, lista;
+
+        this._ClienteService.getLista().subscribe((result) => { 
+            console.log( "body " + result.body);
+            
+            respuesta = result.body;
+
+            console.log( "oplError " +  respuesta.response.oplError);
+            console.log( "opcMensage" + respuesta.response.opcMensage);
+
+            lista = respuesta.response.tt_ctCliente.tt_ctCliente;
+                    
+            lista.forEach(renglon =>{ 
+                console.log ("renglon.iCliente" + renglon.iCliente); 
+                console.log ("renglon.cCliente" + renglon.cCliente); 
+                
+                
+                /*this._ctGrupo = new ctGrupo(
+                item.cCveCia,
+                item.iGrupoID,
+                item.cDescripcion,
+                item.cImagen,
+                item.lActivo,
+                item.dtCreado,
+                item.dtModificado,
+                item.cUsuario,
+                item.iColor  ); */
+            });
+
+
+
+
+        }, (error) => { 
+>>>>>>> 63b4169f75aaa546b85dea2c3a4990252af8b804
             console.log("error");
 
             alert(error);
