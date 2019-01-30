@@ -20,16 +20,12 @@ export class ClienteService {
         const headers = new HttpHeaders({
             'AuthKey': '',
             'AuthToken': '',
-            'Content-Type': 'application/json',
-             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers' : 'Origin, X-Requested-With, Content-Type, Accept'
-
-            
+            'Content-Type': 'application/json',                      
          });
        
          
         
-         return this._http.get( 'http://192.168.1.50:8810/task/rest/taskService/ctCliente',  {observe: 'response' ,  headers: headers });
+         return this._http.get( '/taskService/ctCliente',  {observe: 'response' ,  headers: headers });
                                 
     }
 
