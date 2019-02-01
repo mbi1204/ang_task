@@ -24,7 +24,16 @@ export class ClienteComponent {
     }
 
     ngOnInit():void{
-        this.lista();
+       // this.lista();
+
+       console.log("cliente.component.ts");
+
+       this._ctClientes = this._ClienteService.getListaX();
+
+       this._ctClientes.forEach(element => {
+           alert (element.cCliente);
+           
+       });
     }
 
 
