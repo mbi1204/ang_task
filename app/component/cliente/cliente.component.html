@@ -4,71 +4,75 @@
     </div>     
 </nav> 
 <div class="span6 fondo-color" >
-    <div class="text" >
-    <div class="container-fluid">
-
-                           
-    <div class="container">          
-        <img src="../assets/imagenes/uni.png" alt="..." class="img-rounded">
-        <img src="../assets/imagenes/mojarra.png" alt="..." class="img-rounded">
-
-
-        <form> 
-                <div class="form-group ">
-
-            <p>
-                <label>Cliente</label>
-                <input type="text" class="form-control" placeholder="Nombre Cliente" required autofocus>
-            </p>
-
-            <p>
-                <label>Razon Social</label>
-                <input type="text" class="form-control" placeholder="Razon Social" required/>
-            </p>
-        <div class="container">
-            <p>
-                <label> 
-                    <input type="checkbox" value="Activo"> Activo
-                    <input type="checkbox" value="Inactivo"> Inactivo
-                </label>
-            </p>
-</div>
-            <input type="submit" value="Guardar" class="btn btn-success"/>
+    <!--color linea del menu-->
+        <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
+                <a class="navbar-brand">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    Nuevo Cliente</button>                             
+                </a>
+            <!--Buscador-->
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </nav>
+ 
+<div class="text" >       
+<div class="container-fluid">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registra un nuevo cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <form> 
+                    <div class="form-group ">
+                         <p>
+                            <label>Cliente</label>
+                            <input type="text" class="form-control" placeholder="Nombre Cliente" required autofocus>
+                        </p>
+                
+                        <p>
+                            <label>Razon Social</label>
+                            <input type="text" class="form-control" placeholder="Razon Social" required/>
+                        </p>
+                    <div class="container">
+                        <p>
+                            <label> 
+                                <input type="checkbox" value="Activo"> Activo
+                                <input type="checkbox" value="Inactivo"> Inactivo
+                            </label>
+                        </p>
+                    </div>
+                       
+                 </div>
+                    </form>
             </div>
-        </form>
 
-        <button (click)="lista()">Prueba </button>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Guardar</button>
+                  <!--<button (click)="lista()">Prueba </button>-->
+                </div>
+            </div>
+        </div>
 </div>
-<!--<div class="row">
-    <div class="sidebar " data-examle-id="sample-nav-stacked">
-        <ul class="nav nav-pills nav-stacked nav-pill-stacked-example">
-            <li role="presentation">
-                <a [routerLink]="['lista']">Listado</a>
-            </li>
-            <li role="presentation">
-                <a [routerLink]="['crear']">Listado</a>
-            </li>
-            
-
-        </ul>
-    </div>
-</div>-->
 
 <br><br>
-<div class="row">
-    <div class="col-2">
-      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" >listado</a>
-        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">agrega</a>
-        </div>
-    </div>
+
     <div class="col-lg-10">
-     <!-- <div class="tab-content" id="v-pills-tabContent">-->
-            <table class="table table-hover">
-                <thead class="thead-default">
-                    <tr>
+            <table class="table table table-bordered table-hover " >
+                <thead class="thead-striped">
+                    <tr class="table-primary" >
+                        <th>Id Cliente</th>
                         <th>Nombre</th>
-                        <th>Razon S.</th>
+                        <th>Razon Social</th>
+                        <th>Activo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,28 +80,21 @@
                         <tr *ngFor="let ctCliente of _ctClientes"> 
                                 <td>{{ctCliente.iCliente}}</td>
                                 <td>{{ctCliente.cCliente}}</td>
-
-                    <!--hace una iteracion y agrega un # de indice-->
-                    <!---
-                    <tr *ngFor="let n of numbers; let i = index"> 
-                       <td>{{i + 1 }} Mojarra</td> 
-                       <td>MojMfeliz2555</td>
-                       <br>
-                            <button class="btn btn-sm btn-success">
-                                Editar 
-                            </button> 
-                            <button class="btn btn-sm btn-primary">
-                                 Editar
-                            </button> 
-                            <button  class="btn btn-sm btn-danger">
-                                 Eliminar
-                            </button> 
-                         -->
-                         
-                         
-                    </tr>
+                                <td>{{ctCliente.cRazonS}}</td>
+                                <td>{{ctCliente.lActivo ? "Si":"No"}} </td>
+                              
+                                <td>
+                                    <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
+                                    Editar</button> 
+                                </td>
+                                <td>
+                                    <button  class="btn btn-sm btn-danger">
+                                    Eliminar</button> 
+                                </td>                                      
+                        </tr>                    
                 </tbody>
             </table>
        </div>
     </div>
-  </div>
+    <br><br><br>
+    

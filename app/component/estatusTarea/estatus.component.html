@@ -4,38 +4,101 @@
   </div>
 </nav>
   <div class="span6 fondo-color">
-  <div class="text-center" >
-      <h3>Gestiona el nivel de estus de tus proyectos</h3>
 
-    <div class="bg-img"> 
-      <img src="../assets/imagenes/estatus.png" id="bg-img" alt="">
-    </div>
+    <!--color linea del menu-->
+    <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
+        <a class="navbar-brand">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Registra un nuevo Estatus</button>                             
+        </a>
+    <!--Buscador-->
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </nav>
+    <!--<div class="text-center" >
+          <h3>Gestiona el nivel de estus de tus proyectos</h3>-->
     
-    <br>
-    <hr>
+<div class="text" >       
+<div class="container-fluid">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Nuevo estatus de tarea</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body">
+                <form class="form-row">
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Estatus</label>
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                          <option selected>Selecciona...</option>
+                          <option value="1">Sin Iniciar</option>
+                          <option value="2">En proceso</option>
+                          <option value="3">Pendiente</option>
+                          <option value="4">Terminado</option>
+                          <option value="5">Diferido</option>
+                        </select>
+                      
+                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                        <input type="checkbox" class="custom-control-input" id="customControlInline">
+                        <label class="custom-control-label" for="customControlInline">Activo</label>
+                    </div>
+                      
+                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                        <input type="checkbox" class="custom-control-input" id="customControlInline">
+                        <label class="custom-control-label" for="customControlInline">Inactivo</label>
+                        
+                    </div>
+                    <br>                      
+                  </form>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
+                  </div>
+            </div>
+    </div>
 
-      <form class="form-inline">
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preferencia</label>
-            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-              <option selected>Selecciona...</option>
-              <option value="1">Sin Iniciar</option>
-              <option value="2">En proceso</option>
-              <option value="3">Pendiente</option>
-              <option value="4">Terminado</option>
-              <option value="5">Diferido</option>
-            </select>
-          
-        <div class="custom-control custom-checkbox my-1 mr-sm-2">
-            <input type="checkbox" class="custom-control-input" id="customControlInline">
-            <label class="custom-control-label" for="customControlInline">Activo</label>
-        </div>
-          
-        <div class="custom-control custom-checkbox my-1 mr-sm-2">
-            <input type="checkbox" class="custom-control-input" id="customControlInline">
-            <label class="custom-control-label" for="customControlInline">Inactivo</label>
-            
-        </div>
-        <br>
-          <button type="submit" class="btn btn-primary my-1">Submit</button>
-          
-      </form>
+
+    <div class="col-lg-10">
+            <table class="table table-hover">
+                <thead class="thead-default">
+                    <tr class="table-primary">
+                        <th>Id Estatus</th>
+                        <th>Estatus</th>
+                        <th>Activo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <!-- imprime valores variable html let of array ts-->
+                        <tr *ngFor="let ctEstTarea of _ctEstTareas">
+                                <td>{{ctEstTarea.iEstatus}}</td>
+                                <td>{{ctEstTarea.cEstatus}}</td>
+                                <td>{{ctEstTarea.lActivo ? "Si":"No"}}</td>
+                              
+                                <td>
+                                    <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
+                                    Editar</button> 
+                                </td>
+                                <td>
+                                    <button  class="btn btn-sm btn-danger">
+                                    Eliminar</button> 
+                                </td>                                      
+                       </tr>
+                    
+                </tbody>
+            </table>
+       </div>
+    </div>
+
+ 
+      
+      
+
+      

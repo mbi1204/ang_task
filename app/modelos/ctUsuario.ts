@@ -5,8 +5,8 @@ export class ctUsuario {
         public cUsuario: string,
         public cPassword: string,
         public cNombre: string,
-        public dtFechaN: Date,
+        public dtNacimiento: Date,
         public lActivo: boolean,
-        public cObs: string,
+        public cObc: string,
     ) {}
 }

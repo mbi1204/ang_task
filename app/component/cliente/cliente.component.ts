@@ -14,6 +14,7 @@ import {ctCliente} from '../../modelos/ctCliente';
 
 export class ClienteComponent {   
 
+    //Objetos
     public _ctCliente:ctCliente;
     public _ctClientes:Array<ctCliente> = []; 
 
@@ -45,7 +46,7 @@ export class ClienteComponent {
         this._ctClientes = [];
 
         //servicio rest (resultado , error)
-        this._ClienteService.getLista().subscribe((result) => {                    
+        this._ClienteService.getLista().subscribe((result) => {
             //resultado
 
             //guardo la respuesta en una variable del body
@@ -54,8 +55,8 @@ export class ClienteComponent {
             //guardo la lista en una variable 
             lista = respuesta.response.tt_ctCliente.tt_ctCliente;
 
-            // itera la lista del rest para convertir en objetos type script                    
-            lista.forEach(renglon =>{           
+            // itera la lista del rest para convertir en objetos type script
+            lista.forEach(renglon => {
 
                 //crea objeto
                 this._ctCliente = new ctCliente(
@@ -70,10 +71,13 @@ export class ClienteComponent {
 
         }, (error) => { 
             //error
-            
+
             alert(error);
-            
+
         }); //service
 
     } //lista
+
+    
+
 }
