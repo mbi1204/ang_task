@@ -4,38 +4,111 @@
         <h1>Tarea</h1>  
     </div>    
 </nav>
+
     <div class="span6 fondo-color">
-    <div class="text" >
-
-    <div class="container-fluid">
-    <div class="container">
-
-        <form>
-            <div class="form-group ">
-
-                <p> 
-                    <label>Responsable</label>
-                    <input type="text" class="form-control" placeholder="Responsable" required>
-                </p>
-                <p>
-                    <label>Descripcion</label>
-                    <textarea type="Observaciones" class="form-control" placeholder="Descripcion" required></textarea>
-                </p>
-                <p>
-                    <label>Notas</label>
-                    <textarea type="Observaciones" class="form-control" placeholder="Notas" required></textarea>
-                 </p>
-                 
-                <p>
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
-                    <input type="text" class="form-control" placeholder="Usuario" required autofocus>
-        
-                </p>
+        <!--color linea del menu-->
+        <nav class="navbar navbar-light" color="purple;" style="background-color: #6c8399;">
+            <a class="navbar-brand">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                Nueva Tarea</button>                             
+            </a>
+            <!--Buscador-->
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
+    <div class="text" >       
+    <div class="container-fluid">                
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Registra una nueva Tarea</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group ">
             
-            <div class="form-group"></div>
-            
-                <input type="submit" value="Guardar" class="btn btn-success"/>
+                            <p> 
+                                <label>Responsable</label>
+                                <input type="text" class="form-control" placeholder="Responsable" required>
+                            </p>
+                            <p>
+                                <label>Descripcion</label>
+                                <textarea type="Observaciones" class="form-control" placeholder="Descripcion" required></textarea>
+                            </p>
+                            <p>
+                                <label>Notas</label>
+                                <textarea type="Observaciones" class="form-control" placeholder="Notas" required></textarea>
+                             </p>
+                             
+                            <p>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
+                                <input type="text" class="form-control" placeholder="Usuario" required autofocus>
+                    
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
             </div>
-        </form>
+          </div>
+       
+
+<br><br>
+
+    </div>
+    <div class="col-lg-10">
+            <table class="table table table-bordered table-hover ">
+                <thead class="thead-striped">
+                    <tr  class="table-primary">
+                        <th>Id Tarea</th>
+                        <th>Id Cliente</th>
+                        <th>Responsable</th>
+                        <th>Descripcion</th>
+                        <th>Nota</th>
+                        <th>Creacion</th>
+                        <th>..</th>
+                        <th>...</th>
+                        <th>Estatus</th>
+                        <th>Tipo de tarea</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <!-- imprime valores variable html let of array ts-->
+                        <tr *ngFor="let opTarea of _opTareas"> 
+                            <td>{{opTarea.iTarea}}</td>
+                            <td>{{opTarea.iCliente}}</td>
+                            <td>{{opTarea.cResponsable}}</td>
+                            <td>{{opTarea.cDescripcion}}</td>
+                            <td>{{opTarea.cNota}}</td>
+                            <td>{{opTarea.dtCreacion}}</td>
+                            <td>{{opTarea.dtModificacion}}</td>
+                            <td>{{opTarea.dtTerminado}}</td>
+                            <td>{{opTarea.iEstatus}}</td>
+                            <td>{{opTarea.iTipo}}</td>
+                            
+                           <td>
+                               <button  data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
+                                Editar</button> 
+                            </td>
+                            <td>
+                                <button  class="btn btn-sm btn-danger">
+                                 Eliminar</button> 
+                            </td>
+                        </tr>                                                   
+                </tbody>
+            </table>
+        </div>
         
     </div>

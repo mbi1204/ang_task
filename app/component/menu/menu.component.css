@@ -1,11 +1,17 @@
-
-
+.container-fluid{
+    background: #6c8399;
+}
+.fondo-color{
+    padding: 50px 100px 90px 100px;
+    background: rgb(255, 206, 214);
+    width: 100%; 
+}
 .jumbotron{
     padding:3px;
-    border-radius: 5px;
+    border-radius: 7px;
     box-shadow:  purple;
-    width: 20px;
-    height: 10px;
+    width: 300px;
+    height: 70px;
     color:purple;
     animation-name: deslizamiento;
     animation-duration: 8s;
@@ -16,7 +22,7 @@
         margin-left:0px;
     }
     to{
-        margin-left: 400px;
+        margin-left: 550px;
         background:#FADBD8;
     }
 }
@@ -31,18 +37,10 @@
 
 .container-fluid .navbar-nav>a:hover{
     transition: all 300ms;
-    border-bottom: 3px solid purple;
-    
-    
+    border-bottom: 3px solid purple; 
 }
 
 
-.fondo-color{
-    padding: 30px 100px 90px 100px;
-    background: rgb(255, 206, 214);
-    width: 100%;
-    
-}
 .col-lg-4{
     position: relative; 
     top: 0; 
@@ -50,7 +48,7 @@
     right: 0; 
     bottom: 0; 
     margin: auto; 
-    width: 20%;
+    width: 30%;
     min-width: 5%;
     min-height: 5%;
   }

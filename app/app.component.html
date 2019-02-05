@@ -1,7 +1,9 @@
 <nav class="navbar navbar-default"></nav>
-<nav class="navbar-expand-md navbar-dark bg-dark">
-    
-    <h1>Menu</h1>
+<nav class="navbar-expand-md navbar-dark"  style="background-color: #90A5B3;">
+    <div class="text">
+        <h1>Menu</h1>
+      </div>  
+      <div class="span6 fondo-color" >
         <ul>
             <span class="glyphicon glyphicon-home"></span>
             <a [routerLink]= "['/menu']"> Menu</a>
@@ -20,9 +22,10 @@
             
             <span class="glyphicon glyphicon-user"></span>
             <a [routerLink]= "['/usuario']"> Usuario </a>
-        </ul>
-                 
+        </ul>     </div>     
 </nav>
+
+
 
       
 <router-outlet></router-outlet>

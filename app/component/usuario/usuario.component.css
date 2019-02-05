@@ -1,12 +1,14 @@
 .fondo-color{
-    padding: 100px 100px 100px 100px;
-    background: rgb(255, 206, 214);
-	width: 100%;
+    padding: 80px 100px 100px 100px;
+    background: #6c8399;
+    width: 100%;
+    height: 100%;
 }
 
 .text{
-   /*background: #6c8399;*/
+    background: #CDCFD0;
     max-width: 100%;
+    max-height: 100%;
     color:black;
 }
 
@@ -27,4 +29,12 @@
     flex-flow: row nowrap;
     -ms-flex-pack: start;
     justify-content: flex-start;
+}
+.btn-success{
+    width: 8%;
+    height: 50%;
+}
+
+.modal-body{
+    color:rgb(49, 146, 236); 
 }
