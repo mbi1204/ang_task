@@ -30,21 +30,30 @@ export class ClienteService {
          return this._http.get( '/taskService/ctCliente',  {observe: 'response' ,  headers: this.headers });
     }
 
-    
-
 
     /**
      * Crear un registro en la base de Datos
      */
-    crear(){
+    crear(iCliente: number, cCliente: string, cRazonS: string, lActivo: boolean ) {
         const headers = new HttpHeaders({
             'AuthKey': '',
             'AuthToken': '',
             'Content-Type': 'application/json'
          });
+         const request = JSON.stringify({
+            'request':
+            {
+               'iCliente' : iCliente,
+               'cCliente' : cCliente,
+               'cRazonS' : cRazonS,
+               'lActivo' : lActivo,
+            }
+         });
+         return this._http.post('/taskService/ctCliente', {observe: 'response', headers: this.headers});
 
     }
 
+    
     /**
      * Modifica registro en la base de Batos
      */
@@ -63,12 +72,15 @@ export class ClienteService {
      */
 
 
-    eliminar(){
+    eliminar(Id: number) {
         const headers = new HttpHeaders({
             'AuthKey': '',
             'AuthToken': '',
             'Content-Type': 'application/json'
+
          });
+         return this._http.delete( '/taskService/ctCliente', {observe: 'response' , headers: this.headers });
+
 
     }
 

@@ -13,10 +13,15 @@ import {ctCliente} from '../../modelos/ctCliente';
 })
 
 export class ClienteComponent {   
+    //propiedades metodo crear
+    iCliente: number;
+    cCliente: string;
+    cRazonS: string;
+    lActivo: boolean;
 
     //Objetos
     public _ctCliente:ctCliente;
-    public _ctClientes:Array<ctCliente> = []; 
+    public _ctClientes:Array<ctCliente> = [];
 
     constructor( private router: Router,
                private _ClienteService: ClienteService) {
@@ -25,16 +30,11 @@ export class ClienteComponent {
     }
 
     ngOnInit():void{
-       // this.lista();
 
        console.log("cliente.component.ts");
+       this.lista();
 
-       this._ctClientes = this._ClienteService.getListaX();
-
-       this._ctClientes.forEach(element => {
-           alert (element.cCliente);
-           
-       });
+       
     }
 
 
@@ -78,6 +78,37 @@ export class ClienteComponent {
 
     } //lista
 
-    
 
+
+crear() {
+    let resultado;
+
+    this._ClienteService.crear(this.iCliente, this.cCliente, this.cRazonS, this.lActivo).subscribe(
+    result => {
+        resultado = result.body;
+        
+
+    }
+
+    );
 }
+
+    /*
+    eliminar(Id) {
+
+        let respuesta;
+
+       this._ClienteService.eliminar(Id).subscribe(response => {
+        //respuesta = response.body;
+        if(!response.body){
+            alert('errorrrr');
+        }
+
+       },
+       error =>
+       
+}*/
+
+    }
+
+
