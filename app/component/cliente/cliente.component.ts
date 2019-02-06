@@ -81,19 +81,21 @@ export class ClienteComponent {
 
 crear() {
 
-    console.log("crear");
+    console.log("crear");  
 
-    console.log(this._nuevo);
-  /*  let resultado;
+    var respuesta;
+    
+    this._ClienteService.crear(this._nuevo).subscribe((result) =>  {          
+        //guardo la respuesta en una variable del body
+        respuesta = result.body;   
 
-    this._ClienteService.crear(this.iCliente, this.cCliente, this.cRazonS, this.lActivo).subscribe(
-    result => {
-        resultado = result.body;
-        
+    },(error)=>{
 
-    }
+        alert (error);
 
-    );*/
+    });
+
+  
 }
 
     /*
