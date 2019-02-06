@@ -30,7 +30,7 @@ export class TipoComponent {
 
 
     lista() {
-        console.log("lista()");
+      /*  console.log("lista()");
 
         var respuesta, lista;
         this._ctTipoTareas = [];
@@ -52,4 +52,6 @@ export class TipoComponent {
                 
             }, (error) => {
                 alert(error);
-            });
+            });*/
+        }
+}

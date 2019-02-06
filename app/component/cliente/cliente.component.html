@@ -29,39 +29,74 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-            <div class="modal-body">
-                <form> 
+              
+              <div class="modal-body">
+                <form #formNuevo= "ngForm" (ngSubmit) = "crear()" id = "formNuevo"> 
                     <div class="form-group ">
                          <p>
                             <label>Cliente</label>
-                            <input type="text" class="form-control" placeholder="Nombre Cliente" required autofocus>
+                            <input type="text" class="form-control" placeholder="Nombre Cliente" required autofocus
+                            #cCliente="ngModel" name="cCliente" [(ngModel)] = "_nuevo.cCliente">
                         </p>
                 
                         <p>
                             <label>Razon Social</label>
-                            <input type="text" class="form-control" placeholder="Razon Social" required/>
+                            <input type="text" class="form-control" placeholder="Razon Social" required
+                            #cRazonS="ngModel" name="cRazonS" [(ngModel)] = "_nuevo.cRazonS"  />
+                           
                         </p>
                     <div class="container">
                         <p>
                             <label> 
                                 <input type="checkbox" value="Activo"> Activo
-                                <input type="checkbox" value="Inactivo"> Inactivo
+                                <input type="checkbox" value="Inactivo" class= "btn btn-success"> Inactivo
                             </label>
                         </p>
                     </div>
                        
                  </div>
-                    </form>
-            </div>
+               </form>
+              </div>
 
-                <div class="modal-footer">
+              <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary">Guardar</button>
-                  <!--<button (click)="lista()">Prueba </button>-->
-                </div>
-            </div>
-        </div>
-</div>
+                  <button type="submit"  class="btn btn-primary">Guardar</button>
+                 
+              </div>
+            </div> 
+        </div>  
+    </div> 
+
+
+<!--
+<form #formNuevo= "ngForm" (ngSubmit) = "crear()" id = "formNuevo"> 
+    <div class="form-group ">
+         <p>
+            <label>Cliente</label>
+            <input type="text" class="form-control" placeholder="Nombre Cliente" required autofocus
+            #cCliente="ngModel" name="cCliente" [(ngModel)] = "_nuevo.cCliente">
+        </p>
+
+        <p>
+            <label>Razon Social</label>
+            <input type="text" class="form-control" placeholder="Razon Social" required
+            #cRazonS="ngModel" name="cRazonS" [(ngModel)] = "_nuevo.cRazonS"  />
+           
+        </p>
+    <div class="container">
+        <p>
+            <label> 
+                <input type="checkbox" value="Activo"> Activo
+                <input type="checkbox" value="Inactivo" class= "btn btn-success"> Inactivo
+            </label>
+        </p>
+    </div>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    <button type="submit"  class="btn btn-primary">Guardar</button>
+       
+ </div>
+</form>
+-->
 
 <br><br>
 

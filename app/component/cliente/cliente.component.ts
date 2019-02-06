@@ -13,19 +13,18 @@ import {ctCliente} from '../../modelos/ctCliente';
 })
 
 export class ClienteComponent {   
-    //propiedades metodo crear
-    iCliente: number;
-    cCliente: string;
-    cRazonS: string;
-    lActivo: boolean;
-
+  
+  
     //Objetos
     public _ctCliente:ctCliente;
     public _ctClientes:Array<ctCliente> = [];
+    public _nuevo:ctCliente;
 
     constructor( private router: Router,
                private _ClienteService: ClienteService) {
+
         console.log("cliente Component");
+        this._nuevo = new ctCliente(0,"","",true);
 
     }
 
@@ -81,7 +80,11 @@ export class ClienteComponent {
 
 
 crear() {
-    let resultado;
+
+    console.log("crear");
+
+    console.log(this._nuevo);
+  /*  let resultado;
 
     this._ClienteService.crear(this.iCliente, this.cCliente, this.cRazonS, this.lActivo).subscribe(
     result => {
@@ -90,7 +93,7 @@ crear() {
 
     }
 
-    );
+    );*/
 }
 
     /*
