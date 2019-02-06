@@ -10,6 +10,7 @@ import {ctCliente} from '../modelos/ctCliente';
 export class ClienteService {
     public _ctCliente:ctCliente;
     public _ctClientes:Array<ctCliente> = []; 
+    public tt_Nuevos:Array<ctCliente> = []; 
     
     constructor(public _http: HttpClient) {
     }
@@ -34,22 +35,20 @@ export class ClienteService {
     /**
      * Crear un registro en la base de Datos
      */
-    crear(iCliente: number, cCliente: string, cRazonS: string, lActivo: boolean ) {
-        const headers = new HttpHeaders({
-            'AuthKey': '',
-            'AuthToken': '',
-            'Content-Type': 'application/json'
-         });
+    crear(_ctCliente:  ctCliente) {      
+        
+        var tt_Nuevo = [_ctCliente];
          const request = JSON.stringify({
-            'request':
+            "request":
             {
-               'iCliente' : iCliente,
-               'cCliente' : cCliente,
-               'cRazonS' : cRazonS,
-               'lActivo' : lActivo,
+               "NuevoSet": {"tt_Nuevo": tt_Nuevo }       
             }
          });
-         return this._http.post('/taskService/ctCliente', {observe: 'response', headers: this.headers});
+
+         console.log(request);
+         
+         return this._http.post('/taskService/ctCliente', request  ,{observe: 'response', headers: this.headers});
+         
 
     }
 
