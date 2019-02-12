@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
-import {ctCliente} from '../modelos/ctCliente';
+import {catCliente} from '../modelos/catCliente';
 
 
 
-
+ 
 
 @Injectable()
 export class ClienteService {
-    public _ctCliente:ctCliente;
-    public _ctClientes:Array<ctCliente> = []; 
-    public tt_Nuevos:Array<ctCliente> = []; 
+    public _catCliente:catCliente;
+    public _catClientes:Array<catCliente> = []; 
+    public tt_Nuevos:Array<catCliente> = []; 
     
     constructor(public _http: HttpClient) {
     }
@@ -26,28 +26,28 @@ export class ClienteService {
         Notas: Devuelve el lsitado de los cliente
     */
 
-    getLista() {        
+    getLista() {
 
-         return this._http.get( '/taskService/ctCliente',  {observe: 'response' ,  headers: this.headers });
+         return this._http.get( '/taskService/catCliente',  {observe: 'response' ,  headers: this.headers });
     }
 
 
     /**
      * Crear un registro en la base de Datos
      */
-    crear(_ctCliente:  ctCliente) {      
+    crear(_catCliente:  catCliente) {
         
-        var tt_Nuevo = [_ctCliente];
+        var tt_Nuevo = [_catCliente];
          const request = JSON.stringify({
             "request":
             {
-               "NuevoSet": {"tt_Nuevo": tt_Nuevo }       
+               "NuevoSet": {"tt_Nuevo": tt_Nuevo }
             }
          });
 
          console.log(request);
          
-         return this._http.post('/taskService/ctCliente', request  ,{observe: 'response', headers: this.headers});
+         return this._http.post('/taskService/catCliente', request  ,{observe: 'response', headers: this.headers});
          
 
     }
@@ -63,6 +63,8 @@ export class ClienteService {
             'AuthToken': '',
             'Content-Type': 'application/json'
          });
+         return this._http.put( '/taskService/catCliente', {observe: 'response' , headers: this.headers });
+
 
     } 
 
@@ -82,19 +84,5 @@ export class ClienteService {
 
 
     }
-
-    /**
-     * Trae Registro de la Base de Datos
-     */
-    getRegistro(){
-        const headers = new HttpHeaders({
-            'AuthKey': '',
-            'AuthToken': '',
-            'Content-Type': 'application/json'
-         });
-
-    }
-
-
 
 }

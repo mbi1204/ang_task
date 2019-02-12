@@ -1,0 +1,127 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="text-center" >
+            <h1>SubTarea</h1> 
+        </div>     
+    </nav> 
+<div class="span6 fondo-color" >
+    <!--color linea del menu-->
+    <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
+        <a class="navbar-brand">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Nueva Subtarea</button>                             
+        </a>
+        <!--Buscador-->
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+<div class="text" >       
+    <div class="container-fluid">
+     <!-- Modal -->
+            <form #formNuevo= "ngForm" (ngSubmit) = "crear()" id = "formNuevo"> 
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"  aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Registra un nueva subtarea</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                    <div class="modal-body">
+                
+                        <div class="form-group ">
+                            <p>
+                                <label>Descripcion</label>
+                                <input type="text" class="form-control" placeholder="Descripcion de " required autofocus
+                                #cDescripcion="ngModel" name="cDescripcion" [(ngModel)] = "_nuevo.cDescripcion"><!--_nuevo es elobjeto y cCliente el campo-->
+                            </p>
+                    
+                            <p>
+                                <label>Notas</label>
+                                <input type="text" class="form-control" placeholder="Razon Social" required
+                                #cNotas="ngModel" name="cNotas" [(ngModel)] = "_nuevo.cNotas"  />                      
+                            </p>
+                            <p>
+                                <label>Fecha</label>
+                                <input type="text" class="form-control" placeholder="Razon Social" required
+                                #dtCreacion="ngModel" name="dtCreacion" [(ngModel)] = "_nuevo.dtCreacion"  />                      
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" (click)="refresh()"  class="btn btn-primary">Guardar</button>
+                        
+                        </div>
+                    </div> 
+                </div>  
+            </div> 
+        </div>
+    </form>
+       
+    <div class="col-lg-10">
+        <table class="table table table-bordered table-hover " >
+            <thead class="thead-striped">
+                <tr class="table-primary" >
+                    <th>Id SubTarea</th>
+                    <th>Id Tarea</th>
+                    <th>Descripcion</th>
+                    <th>Notas</th>
+                    <th>Creado</th>
+                </tr>
+            </thead>
+            <tbody>
+             <!-- imprime valores variable html let of array ts-->
+                <tr *ngFor="let opSubTarea of _opeSubTareas"> 
+                    <td>{{opSubTarea.iSubTarea}}</td>
+                    <td>{{opSubTarea.iTarea}}</td>
+                    <td>{{opSubTarea.cDescripcion}}</td>
+                    <td>{{opSubTarea.cNotas}}</td>
+                    <td>{{opSubTarea.dtCreado}} </td>
+                      
+                        <td>
+                            <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
+                            Editar</button> 
+                        </td>
+                        <td>
+                            <button type="button"  class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal" >
+                            Eliminar</button>
+                          
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Elimina subtarea</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Estas seguro que quieres borrar la subtarea<strong>{{opSubTarea.cDescripcion}}</strong> ?
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>{{opSubTarea.cDescripcion}}</p> 
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button"  class="btn btn-danger">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </td>                                      
+                    </tr>                    
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    
+
+     
+   

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="text-center" >
         <h1>Tipo de Tarea</h1>
-    </div>
+    </div> 
 </nav> 
     <div class="span6 fondo-color">
         <!--color linea del menu-->
@@ -18,59 +18,39 @@
               </nav>
  
     <div class="text" >
-            <div class="container-fluid">
+    <div class="container-fluid">
 
         <!-- Modal -->
+    <form #formNuevo= "ngForm" (ngSubmit)= "crear()" id= "formnuevo">
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Registra una nuevo tipo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                  </div>
+                </div>
                 
-        <div class="modal-body">
-                                    
-        <form>     
-            <form class="form-row">
-                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preferencia</label>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                        <option selected>Selecciona...</option>
-                        <option value="1">Adecuacion</option>
-                        <option value="2">Correccion</option>
-                        <option value="3">Soporte</option>
-                        
-                    </select>
-                        
-                <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                    <input type="checkbox" class="custom-control-input" id="customControlInline">
-                    <label class="custom-control-label" for="customControlInline">Activo</label>
+            <div class="modal-body">                                            
+                <div class="form-group ">
+                    <p>
+                        <label>Tipo de Tarea</label>
+                        <input type="text" class="form-control" placeholder="Nombre del tipo de tarea" required autofocus
+                        #cTipo="ngModel" name="cTipo" [(ngModel)] = "_nuevo.cTipo"><!--_nuevo es elobjeto y cCliente el campo-->
+                    </p>
+                </div>   
+            </div>
+     <br><br>
+     
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" (click)="refresh()"  class="btn btn-primary">Guardar</button>
                 </div>
-                        
-                <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                    <input type="checkbox" class="custom-control-input" id="customControlInline">
-                    <label class="custom-control-label" for="customControlInline">Inactivo</label>
-                        
-                </div>
-        <br><br>
-        
-                    <button type="submit" class="btn btn-primary my-1">Guardar</button>
-                        
-        </form>
-    </form>
-</div>
-
-<div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-        <!--<button (click)="lista()">Prueba </button>-->
-      </div>
-  </div>
-</div>
-</div>
-
+            </div>          
+        </div>
+    </div>
+</form>
 <br><br>
     <div class="col-lg-10">
         <table class="table table table-bordered table-hover " >
@@ -82,21 +62,21 @@
                 </tr>
             </thead>
             <tbody>
-                    <!-- imprime valores variable html let of array ts-->
-                    <tr *ngFor="let ctTipoTarea of _ctTipoTareas"> 
-                            <td>{{ctTipoTarea.iTipo}}</td>
-                            <td>{{ctTipoTarea.cTipo}}</td>                   
-                            <td>{{ctTipoTarea.lActivo ? "Si":"No"}} </td>
+                <!-- imprime valores variable html let of array ts-->
+                <tr *ngFor="let ctTipoTarea of _catTipoTareas"> 
+                    <td>{{ctTipoTarea.iTipo}}</td>
+                    <td>{{ctTipoTarea.cTipo}}</td>                   
+                    <td>{{ctTipoTarea.lActivo ? "Si":"No"}} </td>
                           
-                            <td>
-                                <button data-toggle="modal" data-target="#exampleModalLong"class="btn btn-sm btn-primary">
-                                Editar</button> 
-                            </td>
-                            <td>
-                                <button  class="btn btn-sm btn-danger">
-                                Eliminar</button> 
-                            </td>                                      
-                    </tr>                    
+                        <td>
+                            <button data-toggle="modal" data-target="#exampleModalLong"class="btn btn-sm btn-primary">
+                            Editar</button> 
+                        </td>
+                        <td>
+                            <button  class="btn btn-sm btn-danger">
+                            Eliminar</button> 
+                        </td>                                      
+                </tr>                    
             </tbody>
         </table>
    </div>

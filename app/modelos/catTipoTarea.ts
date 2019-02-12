@@ -1,5 +1,5 @@
 // tslint:disable-next-line:class-name
-export class ctTipoTarea {
+export class catTipoTarea {
     constructor (
         public iTipo: number,
         public cTipo: string,

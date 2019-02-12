@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router } from '@angular/router';
 import {TipoService} from '../../service/tipo.service';
-import {ctTipoTarea} from '../../modelos/ctTipoTarea';
+import { catTipoTarea } from '../../modelos/catTipoTarea';
 
 @Component({
     selector :'tipo',
@@ -15,12 +15,15 @@ import {ctTipoTarea} from '../../modelos/ctTipoTarea';
 export class TipoComponent {
 
     //Objetos
-    public _ctTippoTarea:ctTipoTarea;
-    public _ctTipoTareas:Array<ctTipoTarea> = [];
+    public _catTippoTarea:catTipoTarea;
+    public _catTipoTareas:Array<catTipoTarea> = [];
+    public _nuevo: catTipoTarea;
 
     constructor( private router: Router,
             private _TipoService: TipoService) {
+
         console.log("Tipo Usuario Component");
+        this._nuevo = new catTipoTarea(0,"",true);
 
     }
 
@@ -30,28 +33,50 @@ export class TipoComponent {
 
 
     lista() {
-      /*  console.log("lista()");
+        console.log("lista()");
 
         var respuesta, lista;
-        this._ctTipoTareas = [];
+        this._catTipoTareas = [];
 
         this._TipoService.getLista().subscribe((result) => {
 
             respuesta = result.body;
-            lista = respuesta.response.tt_ctTipoTarea.tt_ctTipoTarea;
+            lista = respuesta.response.tt_catTipoTarea.tt_catTipoTarea;
 
             lista.forEach(renglon => {
                 //Crea objeto
-                this._ctTippoTarea = new ctTipoTarea (
+                this._catTippoTarea = new catTipoTarea (
                     renglon.iTipo,
                     renglon.cTipo,
                     renglon.lActivo
                 );
                 //guarda el objeto en la lista
-                this._ctTipoTareas.push(this._ctTippoTarea);
-                
+                this._catTipoTareas.push(this._catTippoTarea);
+                });
+
             }, (error) => {
                 alert(error);
-            });*/
+        });
+    }
+
+    crear() {
+
+        console.log("crear");  
+
+        var respuesta;
+
+        this._TipoService.crear(this._nuevo).subscribe((result) =>  {
+            //guardo la respuesta en una variable del body
+            respuesta = result.body;   
+
+        },(error)=>{
+
+            alert (error);
+
+        });//service
+    }
+    refresh(): void {
+        window.location.reload();
+    }
+
         }
-}

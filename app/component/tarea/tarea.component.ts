@@ -2,7 +2,7 @@
 import {Component} from '@angular/core';
 import {Router } from '@angular/router';
 import {TareaService } from '../../service/tarea.service';
-import {opTarea} from '../../modelos/optarea';
+import {opeTarea} from '../../modelos/opetarea';
 
 
 @Component ({
@@ -13,21 +13,30 @@ import {opTarea} from '../../modelos/optarea';
     providers: [TareaService]
 
 
+    
+
 
 })
 
 export class TareaComponent {
 
-    public _opTarea:opTarea;
-    public _opTareas:Array<opTarea> = [];
+
+    
+    public _opeTarea:opeTarea;
+    public _opeTareas:Array<opeTarea> = [];
+    public _nuevo:opeTarea;
+
 
     constructor( private router: Router,
-        private _TareaService: TareaService) {
- console.log("cliente Component");
+                private _TareaService: TareaService) {
+        
+        console.log("tarea Component");
+        this._nuevo = new opeTarea (0,0,"","","",null,null,null,0,0,0);
 
 }
 
     ngOnInit():void{
+        console.log("tarea.component.ts");
         this.lista();
     }
 
@@ -35,23 +44,22 @@ export class TareaComponent {
         console.log("lista()");
 
         var respuesta, lista;
-        this._opTareas = [];
+        this._opeTareas = [];
 
 
         this._TareaService.getLista().subscribe((result) => {
             //resultado
 
-
             respuesta = result.body;
 
 
-            lista = respuesta.response.tt_opTarea.tt_opTarea;
+            lista = respuesta.response.tt_opeTarea.tt_opeTarea;
 
 
             lista.forEach(renglon => {
 
                 //crea objeto
-                this._opTarea = new opTarea(
+                this._opeTarea = new opeTarea(
                     renglon.iTarea,
                     renglon.iCliente,
                     renglon.cResponsable,
@@ -66,10 +74,10 @@ export class TareaComponent {
 
                 );
                //guarda objeto en la lista
-                this._opTareas.push(this._opTarea);
+                this._opeTareas.push(this._opeTarea);
             });
 
-        }, (error) => { 
+        }, (error) => {
             //error
 
             alert(error);
@@ -77,4 +85,26 @@ export class TareaComponent {
         }); //service
 
     } //lista
+
+    crear() {
+
+        console.log("crear");
+
+        var respuesta;
+
+        this._TareaService.crear(this._nuevo).subscribe((result) => {
+            //guardo la respuesta en una variable del body
+
+            respuesta = result.body;
+
+        }, (error) => {
+
+            alert (error);
+        });
+    }
+
+
 }
+
+
+

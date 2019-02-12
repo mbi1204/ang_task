@@ -16,16 +16,19 @@ import { MenuComponent } from '../app/component/menu/menu.component';
 import {TipoComponent} from "../app/component/tipoTarea/tipo.component";
 import {UsuarioComponent} from '../app/component/usuario/usuario.component';
 import { TareaComponent} from '..//app/component/tarea/tarea.component';
+import { SubtareaComponent} from '..//app/component/subtarea/subtarea.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ClienteComponent,
     EstatusComponent,
-    LoginComponent,
+    LoginComponent, 
     MenuComponent,
     TipoComponent,
     UsuarioComponent,
-    TareaComponent
+    TareaComponent,
+    SubtareaComponent
 
 
   ],

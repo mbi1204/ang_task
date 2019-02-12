@@ -1,5 +1,5 @@
 // tslint:disable-next-line:class-name
-export class opTarea {
+export class opeTarea {
     constructor (
         public iTarea: number,
         public iCliente: number,
@@ -13,4 +13,5 @@ export class opTarea {
         public iUsuario: number,
         public iTipo: number,
     ) {}
+// tslint:disable-next-line:eofline
 }

@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Router } from '@angular/router';
 import {EstatusService} from '../../service/estatus.service';
-import {ctEstTarea} from '../../modelos/ctEstTarea';
+import { catEstTarea } from '../../modelos/catEstTarea';
+
 
 @Component({
     selector :'estatus',
@@ -13,12 +14,16 @@ import {ctEstTarea} from '../../modelos/ctEstTarea';
 
 export class EstatusComponent {
     //objetos
-    public _ctEstTarea:ctEstTarea;
-    public _ctEstTareas: Array<ctEstTarea> = []
+    public _catEstTarea: catEstTarea;
+    public _catEstTareas: Array<catEstTarea> = [];
+    public _nuevo: catEstTarea;
 
     constructor( private router: Router,
-                private _EstatusService: EstatusService) {
+        private _EstatusService: EstatusService) {
+
         console.log("estatus Component");
+        this._nuevo = new catEstTarea(0,"",true);
+
 
     }
 
@@ -30,26 +35,45 @@ export class EstatusComponent {
         console.log("lista()");
 
         var respuesta, lista;
-        this._ctEstTareas = [];
+        this._catEstTareas= [];
 
         this._EstatusService.getLista().subscribe((result) => {
 
             respuesta = result.body;
 
-            lista = respuesta.response.tt_ctEstTarea.tt_ctEstTarea;
+            lista = respuesta.response.tt_catEstTarea.tt_catEstTarea;
 
             lista.forEach(renglon => {
 
-                this._ctEstTarea = new ctEstTarea(
+                this._catEstTarea = new catEstTarea(
                     renglon.iEstatus,
                     renglon.cEstatus,
                     renglon.lActivo
                 );
-                this._ctEstTareas.push(this._ctEstTarea);
+                this._catEstTareas.push(this._catEstTarea);
             });
         }, (error) => {
             alert(error);
 
-        });
+        });//service
+    }//lista
+
+
+    crear() {
+        console.log("crear");
+
+        var respuesta;
+
+        this._EstatusService.crear(this._nuevo).subscribe((result) =>  {
+            respuesta = result.body;
+
+        }, (error) => {
+
+            alert (error);
+        });//service
+    }
+
+    refresh(): void {
+        window.location.reload();
     }
 }

@@ -21,6 +21,7 @@
     <div class="text" >       
     <div class="container-fluid">                
           <!-- Modal -->
+          <form #formNuevo= "ngForm" (ngSubmit)= "crear()" id= "formNuevo">
           <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -32,83 +33,110 @@
                 </div>
                 
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group ">
             
-                            <p> 
-                                <label>Responsable</label>
-                                <input type="text" class="form-control" placeholder="Responsable" required>
-                            </p>
-                            <p>
-                                <label>Descripcion</label>
-                                <textarea type="Observaciones" class="form-control" placeholder="Descripcion" required></textarea>
-                            </p>
-                            <p>
-                                <label>Notas</label>
-                                <textarea type="Observaciones" class="form-control" placeholder="Notas" required></textarea>
-                             </p>
-                             
-                            <p>
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
-                                <input type="text" class="form-control" placeholder="Usuario" required autofocus>
-                    
-                            </p>
-                        </div>
-                    </form>
+                    <div class="form-group ">
+                                
+                        <p>
+                            <label>Responsable</label>
+                            <input type="text" class="form-control" placeholder="Responsable" required autofocus
+                            #cResponsable="ngModel" name="cResponsable" [(ngModel)] = "_nuevo.cResponsable">
+                        </p>
+                        <p>
+                            <label>Descripcion</label>
+                            <textarea type="Observaciones" class="form-control" placeholder="descripcion" required
+                            #cDescripcion="ngModel" name="cDescripcion" [(ngModel)]= "_nuevo.cDescripcion"></textarea>
+                        </p>
+                        <p>
+                            <label>Notas</label>
+                            <textarea type="Observaciones" class="form-control" placeholder="Nota" required
+                             #cNotas="ngModel" name="cNotas" [(ngModel)]= "_nuevo.cNota"></textarea>                    
+                        </p>
+                        <p>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
+                            <input type="text" class="form-control" placeholder="Usuario" required autofocus
+                            #iUsuario="ngModel" name="iUsuario" [(ngModel)] = "_nuevo.iUsuario" />                                                
+                                
+                        </p>
+            
+                    </div>
                 </div>
+
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="" class="btn btn-primary">Guardar</button>
                 </div>
               </div>
             </div>
           </div>
-       
+       </form>
 
 <br><br>
 
-    </div>
+   
     <div class="col-lg-10">
-            <table class="table table table-bordered table-hover ">
-                <thead class="thead-striped">
-                    <tr  class="table-primary">
-                        <th>Id Tarea</th>
-                        <th>Id Cliente</th>
-                        <th>Responsable</th>
-                        <th>Descripcion</th>
-                        <th>Nota</th>
-                        <th>Creacion</th>
-                        <th>..</th>
-                        <th>...</th>
-                        <th>Estatus</th>
-                        <th>Tipo de tarea</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <!-- imprime valores variable html let of array ts-->
-                        <tr *ngFor="let opTarea of _opTareas"> 
-                            <td>{{opTarea.iTarea}}</td>
-                            <td>{{opTarea.iCliente}}</td>
-                            <td>{{opTarea.cResponsable}}</td>
-                            <td>{{opTarea.cDescripcion}}</td>
-                            <td>{{opTarea.cNota}}</td>
-                            <td>{{opTarea.dtCreacion}}</td>
-                            <td>{{opTarea.dtModificacion}}</td>
-                            <td>{{opTarea.dtTerminado}}</td>
-                            <td>{{opTarea.iEstatus}}</td>
-                            <td>{{opTarea.iTipo}}</td>
-                            
-                           <td>
-                               <button  data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
-                                Editar</button> 
-                            </td>
-                            <td>
-                                <button  class="btn btn-sm btn-danger">
-                                 Eliminar</button> 
-                            </td>
-                        </tr>                                                   
+        <table class="table table table-bordered table-hover ">
+            <thead class="thead-striped">
+                <tr class="table-primary">
+                    <th>Id Tarea</th>
+                    <th>Id Cliente</th>
+                    <th>Responsable</th>
+                    <th>Descripcion</th>
+                    <th>Nota</th>
+                    <th>Creacion</th>
+                    <th>..</th>
+                    <th>...</th>
+                    <th>Estatus</th>
+                    <th>Tipo de tarea</th>
+                </tr>
+            </thead>
+                <tbody> 
+                    <!-- imprime valores variable html let of array ts-->
+                    <tr *ngFor="let opTarea of _opeTareas"> 
+                        <td>{{opTarea.iTarea}}</td>
+                        <td>{{opTarea.iCliente}}</td>
+                        <td>{{opTarea.cResponsable}}</td>
+                        <td>{{opTarea.cDescripcion}}</td>
+                        <td>{{opTarea.cNota}}</td>
+                        <td>{{opTarea.dtCreacion}}</td>
+                        <td>{{opTarea.dtModificacion}}</td>
+                        <td>{{opTarea.dtTerminado}}</td>
+                        <td>{{opTarea.iEstatus}}</td>
+                        <td>{{opTarea.iTipo}}</td>
+                                    
+                        <td>
+                        <button  data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
+                        Editar</button> 
+                        </td>
+                        <td>
+                            <button  class="btn btn-sm btn-danger">
+                            Eliminar</button> 
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar cliente</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                        <div class="modal-body">
+                                            ¿Estas seguro que quieres borrar el cliente <strong>{{opTarea.iTarea}}</strong> ?
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>{{opTarea.iTarea}}</p> 
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button"  class="btn btn-danger">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </td>
+                    </tr>                                                   
                 </tbody>
             </table>
         </div>
-        
-    </div>
+    </div>        
+</div>

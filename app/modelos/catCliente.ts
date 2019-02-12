@@ -1,5 +1,5 @@
 // tslint:disable-next-line:class-name
-export class ctCliente {
+export class catCliente {
     constructor(
         public iCliente: number,
         public cCliente: string,

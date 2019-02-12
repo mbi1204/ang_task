@@ -5,21 +5,22 @@
     </nav> 
     <div class="span6 fondo-color" >
         <!--color linea del menu-->
-            <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
-                    <a class="navbar-brand">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                        Nuevo Usuario </button>                             
-                    </a>
-                <!--Buscador-->
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                  </nav>
+        <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
+             <a class="navbar-brand">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                Nuevo Usuario </button>                             
+            </a>
+            <!--Buscador-->
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
      
     <div class="text" >       
     <div class="container-fluid">
         <!-- Modal -->
+        <form #formNuevo= "ngForm" (ngSubmit) ="crear()" id= "formNuevo">
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -30,84 +31,108 @@
                     </button>
                   </div>
                 <div class="modal-body">
-                    <form>
-                <div class="form-group ">
+                    <div class="form-group ">
     
-                    <p>
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
-                        <input type="text" class="form-control" placeholder="Usuario" required autofocus>       
-                    </p>
+                        <p>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
+                            <input type="text" class="form-control" placeholder="Usuario" required autofocus
+                            #cUsuario="ngModel" name="cUsuario" [(ngModel)] = "_nuevo.cUsuario">       
+                        </p>
+                    
+                        <p>
+                            <label>Password</label>
+                            <input type="password"  class="form-control" placeholder="Password" required
+                            #cPassword="ngModel" name="cPassword" [(ngModel)] = '_nuevo.cPassword'>
+                        </p>
+                        <p>
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" placeholder="Nombre del Usuario" required
+                            #cNombre="ngModel" name="cNombre" [(ngModel)] = '_nuevo.cNombre'>
+                        </p>
+                        <p>
+                            <label>Fecha de Nacimiento</label>
+                            <input type="password"  class="form-control" placeholder="Fecha completa" required
+                            #dtNacimiento="ngModel" name="dtNacimiento" [(ngModel)] = '_nuevo.dtNacimiento'>
+                        </p>
+                        <p>
+                            <label> 
+                                <input type="checkbox" value="Activo"> Activo
+                                <input type="checkbox" value="Inactivo"> Inactivo    
+                            </label>
+                        </p>
                 
-                    <p>
-                        <label>Password</label>
-                        <input type="password"  class="form-control" placeholder="Password" required>
-                    </p>
-                    <p>
-                        <label>Nombre</label>
-                        <input type="text" class="form-control" placeholder="Nombre del Usuario" required>
-                    </p>
-                    <p>
-                        <label>Fecha de Nacimiento</label>
-                        <input type="password"  class="form-control" placeholder="Fecha completa" required>
-                    </p>
-                    <p>
-                        <label> 
-                            <input type="checkbox" value="Activo"> Activo
-                            <input type="checkbox" value="Inactivo"> Inactivo    
-                        </label>
-                    </p>
-                
-                <div class="form-group"></div>
-                    <p>
-                        <label>Observaciones</label>
-                        <textarea type="Observaciones" class="form-control" placeholder="Observaciones" required></textarea>
-                    </p>
+                        <div class="form-group"></div>
+                            <p>
+                                <label>Observaciones</label>
+                                <textarea type="Observaciones" class="form-control" placeholder="Observaciones" required
+                                #cObc="ngModel" name="cObc" [(ngModel)] = '_nuevo.cObc'></textarea>
+                            </p>
+                    </div>
                 </div>
-            </form>   
-                </div>
-    
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
             </div>
-    </div>
-    
-    <br><br>
-    <!--Botone izq. lista -->
-    
-        <div class="col-lg-10">
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-default">
-                        <tr class="table-primary" >
-                            <th>Id Usuario</th>
-                            <th>Contraseña</th>
-                            <th>Nombre</th>
-                            <th>Fecha</th>
-                            <th>Activo</th>
-                            <th>Observaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <!-- imprime valores variable html let of array-modelo ts-->
-                            <tr *ngFor="let ctUsuario of _ctUsuarios"> 
-                                    <td>{{ctUsuario.iUsuario}}</td>
-                                    <td>{{ctUsuario.cPassword}}</td>
-                                    <td>{{ctUsuario.cNombre}}</td>
-                                    <td>{{ctUsuario.dtNacimiento}}</td>
-                                    <td>{{ctUsuario.lActivo ? "SI":"NO"}}</td>
-                                    <td>{{ctUsuario.cObc}}</td>                                  
-                                    <td>
-                                        <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
-                                        Editar</button> 
-                                    </td>
-                                    <td>
-                                        <button  class="btn btn-sm btn-danger">
-                                        Eliminar</button> 
-                                    </td>                                      
-                        </tr>                       
-                    </tbody>
-                </table>
-           </div>
         </div>
+    </form>  
+    <br><br>
+    
+    <div class="col-lg-10">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-default">
+                <tr class="table-primary" >
+                    <th>Id Usuario</th>
+                    <th>Contraseña</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Activo</th>
+                    <th>Observaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- imprime valores variable html let of array-modelo ts-->
+                <tr *ngFor="let ctUsuario of _catUsuarios"> 
+                    <td>{{ctUsuario.iUsuario}}</td>
+                    <td>{{ctUsuario.cPassword}}</td>
+                    <td>{{ctUsuario.cNombre}}</td>
+                    <td>{{ctUsuario.dtNacimiento}}</td>
+                    <td>{{ctUsuario.lActivo ? "SI":"NO"}}</td>
+                    <td>{{ctUsuario.cObc}}</td>                                  
+                    <td>
+                        <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
+                        Editar</button> 
+                    </td>
+                    <td>
+                        <button  class="btn btn-sm btn-danger">
+                        Eliminar</button> 
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar usuario</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Estas seguro que quieres borrar el usuario <strong>{{ctUsuario.iUsuario}}</strong> ?
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>{{ctUsuario.iUsuario}}</p> 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button"  class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </td>                                      
+                </tr>                       
+            </tbody>
+        </table>
+    </div>
+  </div>

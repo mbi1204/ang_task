@@ -5,23 +5,23 @@
 </nav> 
 <div class="span6 fondo-color" >
     <!--color linea del menu-->
-        <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
-                <a class="navbar-brand">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                    Nuevo Cliente</button>                             
-                </a>
-            <!--Buscador-->
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-              </nav>
+    <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
+         <a class="navbar-brand">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Nuevo Cliente</button>                             
+        </a>
+        <!--Buscador-->
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
  
 <div class="text" >       
 <div class="container-fluid">
     <!-- Modal -->
     <form #formNuevo= "ngForm" (ngSubmit) = "crear()" id = "formNuevo"> 
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"  aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -33,34 +33,26 @@
               
               <div class="modal-body">
                 
-                    <div class="form-group ">
-                         <p>
-                            <label>Cliente</label>
-                            <input type="text" class="form-control" placeholder="Nombre Cliente" required autofocus
-                            #cCliente="ngModel" name="cCliente" [(ngModel)] = "_nuevo.cCliente">
-                        </p>
+                <div class="form-group ">
+                    <p>
+                        <label>Cliente</label>
+                        <input type="text" class="form-control" placeholder="Nombre Cliente" required autofocus
+                        #cCliente="ngModel" name="cCliente" [(ngModel)] = "_nuevo.cCliente"><!--_nuevo es elobjeto y cCliente el campo-->
+                    </p>
                 
-                        <p>
-                            <label>Razon Social</label>
-                            <input type="text" class="form-control" placeholder="Razon Social" required
-                            #cRazonS="ngModel" name="cRazonS" [(ngModel)] = "_nuevo.cRazonS"  />
+                    <p>
+                        <label>Razon Social</label>
+                        <input type="text" class="form-control" placeholder="Razon Social" required
+                        #cRazonS="ngModel" name="cRazonS" [(ngModel)] = "_nuevo.cRazonS"  />
                            
-                        </p>
-                    <div class="container">
-                        <p>
-                            <label> 
-                                <input type="checkbox" value="Activo"> Activo
-                            </label>
-                        </p>
-                    </div>
-                       
-                 </div>
+                    </p>
+                </div>
              
               </div>
 
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="submit" (click)="crear()"  class="btn btn-primary">Guardar</button>
+                  <button type="submit" (click)="refresh()"  class="btn btn-primary">Guardar</button>
                  
               </div>
             </div> 
@@ -101,59 +93,59 @@
 <br><br>
 
     <div class="col-lg-10">
-            <table class="table table table-bordered table-hover " >
-                <thead class="thead-striped">
-                    <tr class="table-primary" >
-                        <th>Id Cliente</th>
-                        <th>Nombre</th>
-                        <th>Razon Social</th>
-                        <th>Activo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <!-- imprime valores variable html let of array ts-->
-                        <tr *ngFor="let ctCliente of _ctClientes"> 
-                                <td>{{ctCliente.iCliente}}</td>
-                                <td>{{ctCliente.cCliente}}</td>
-                                <td>{{ctCliente.cRazonS}}</td>
-                                <td>{{ctCliente.lActivo ? "Si":"No"}} </td>
+         <table class="table table table-bordered table-hover " >
+            <thead class="thead-striped">
+                <tr class="table-primary" >
+                    <th>Id Cliente</th>
+                    <th>Nombre</th>
+                    <th>Razon Social</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- imprime valores variable html let of array ts-->
+                <tr *ngFor="let ctCliente of _catClientes"> 
+                    <td>{{ctCliente.iCliente}}</td>
+                    <td>{{ctCliente.cCliente}}</td>
+                    <td>{{ctCliente.cRazonS}}</td>
+                    <td>{{ctCliente.lActivo ? "Si":"No"}} </td>
                               
-                                <td>
-                                    <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
-                                    Editar</button> 
-                                </td>
-                                <td>
-                                    <button type="button"  class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal" >
-                                    Eliminar</button>
+                    <td>
+                        <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
+                        Editar</button> 
+                    </td>
+                    <td>
+                        <button type="button"  class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal" >
+                        Eliminar</button>
                                   
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar cliente</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            </div>
-                                            <div class="modal-body">
-                                            ¿Estas seguro que quieres borrar el cliente <strong>{{ctCliente.cCliente}}</strong> ?
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>{{ctCliente.iCliente}}</p> 
-                                            </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <button type="button"  class="btn btn-danger">Eliminar</button>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div> 
-                                </td>                                      
-                        </tr>                    
-                </tbody>
-            </table>
-       </div>
+                    <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar cliente</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Estas seguro que quieres borrar el cliente <strong>{{ctCliente.cCliente}}</strong> ?
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>{{ctCliente.iCliente}}</p> 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button"  class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </td>                                      
+                </tr>                    
+            </tbody>
+        </table>
     </div>
-    <br><br><br>
+</div>
+<br><br><br>
     
