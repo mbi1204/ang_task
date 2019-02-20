@@ -5,96 +5,117 @@ import { catCliente } from '../../modelos/catCliente';
 
 
 @Component({
-    selector :'cliente',
-    templateUrl:'cliente.component.html',
+    // tslint:disable-next-line:component-selector
+    selector : 'cliente',
+    templateUrl: 'cliente.component.html',
     styleUrls: ['cliente.component.css'],
     providers: [ClienteService]
 
 })
 
-export class ClienteComponent {   
-  
-  
-    //Objetos
-    public _catCliente:catCliente;
-    public _catClientes:Array<catCliente> = [];
-    public _nuevo:catCliente;
+export class ClienteComponent {
+// atributos
 
-    constructor( private router: Router,
-               private _ClienteService: ClienteService) {
+    // crea objetos para la lista
+    public _catCliente: catCliente;
+    // lista del modelo
+    public _catClientes: Array<catCliente> = [];
+    // guarda la lista nueva
+    public _nuevo: catCliente;
 
-        console.log("cliente Component");
-        this._nuevo = new catCliente(0,"","",true);
+    constructor( private _ClienteService: ClienteService) {
+
+        console.log('cliente Component');
+        this._nuevo = new catCliente(0, '', '' , true);
 
     }
 
-    ngOnInit():void{ 
+    ngOnInit(): void {
 
-       console.log("cliente.component.ts");
+       console.log('cliente.component.ts');
        this.lista();
 
-       
     }
 
 
 
-    lista(){
-        console.log("lista()");
+    lista() {
+        console.log('lista()');
 
-        var respuesta, lista;
+        let respuesta, lista;
         this._catClientes = [];
 
-        //servicio rest (resultado , error)
+        // servicio rest (resultado , error)
         this._ClienteService.getLista().subscribe((result) => {
-            //resultado
+            // resultado
 
-            //guardo la respuesta en una variable del body
-            respuesta = result.body;          
+            // guardo la respuesta en una variable del body
+            respuesta = result.body;
 
-            //guardo la lista en una variable 
-            lista = respuesta.response.tt_catCliente.tt_catCliente;
+            // guardo la lista en una variable y se agrega la respuesta tt_ctCliente del postman
+            lista = respuesta.response.tt_ctCliente.tt_catCliente;
 
             // itera la lista del rest para convertir en objetos type script
             lista.forEach(renglon => {
 
-                //crea objeto
+                // crea objeto
                 this._catCliente = new catCliente(
                     renglon.iCliente,
                     renglon.cCliente,
                     renglon.cRazonS,
                     renglon.lActivo
-                );               
-               //guarda objeto en la lista
+                );
+               // guarda objeto en la lista
                 this._catClientes.push(this._catCliente);
             });
 
-        }, (error) => { 
-            //error
+        }, (error) => {
+            // error
 
             alert(error);
 
-        }); //service
+        }); // service
 
-    } //lista
+    } // lista
 
 
 
 crear() {
 
-    console.log("crear");  
+    console.log('crear');
 
-    var respuesta;
-    
+    let respuesta;
+
     this._ClienteService.crear(this._nuevo).subscribe((result) =>  {
-        //guardo la respuesta en una variable del body
-        respuesta = result.body;   
-
-    },(error)=>{
+        // guardo la respuesta en una variable del body
+        respuesta = result.body;
+    }, (error) => {
 
         alert (error);
 
-    });//service
+    }); // service
 }
+
+
+eliminar(iCliente: string) {
+    console.log('yaaa', iCliente);
+
+    // tslint:disable-next-line:prefer-const
+    let respuesta, Mensage;
+    this._ClienteService.eliminar(iCliente).subscribe((result) =>  {
+        // guardo la respuesta en una variable del body
+        respuesta = result.body;
+        Mensage = respuesta.response.opcMensage;
+
+        console.log(Mensage);
+    }, (error) =>  {
+
+        alert (error);
+
+    }); // service
+
+}
+
 refresh(): void {
     window.location.reload();
 }

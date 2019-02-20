@@ -18,10 +18,12 @@
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
         </nav>
-    <div class="text" >       
+    <div class="text" >     
+     
+
     <div class="container-fluid">                
           <!-- Modal -->
-          <form #formNuevo= "ngForm" (ngSubmit)= "crear()" id= "formNuevo">
+          <form #formNuevo = "ngForm"  (ngSubmit) = "crear()"  id = "formNuevo">
           <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -34,43 +36,84 @@
                 
                 <div class="modal-body">
             
-                    <div class="form-group ">
-                                
-                        <p>
-                            <label>Responsable</label>
-                            <input type="text" class="form-control" placeholder="Responsable" required autofocus
-                            #cResponsable="ngModel" name="cResponsable" [(ngModel)] = "_nuevo.cResponsable">
-                        </p>
-                        <p>
-                            <label>Descripcion</label>
-                            <textarea type="Observaciones" class="form-control" placeholder="descripcion" required
-                            #cDescripcion="ngModel" name="cDescripcion" [(ngModel)]= "_nuevo.cDescripcion"></textarea>
-                        </p>
-                        <p>
-                            <label>Notas</label>
-                            <textarea type="Observaciones" class="form-control" placeholder="Nota" required
-                             #cNotas="ngModel" name="cNotas" [(ngModel)]= "_nuevo.cNota"></textarea>                    
-                        </p>
-                        <p>
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
-                            <input type="text" class="form-control" placeholder="Usuario" required autofocus
-                            #iUsuario="ngModel" name="iUsuario" [(ngModel)] = "_nuevo.iUsuario" />                                                
-                                
-                        </p>
-            
-                    </div>
-                </div>
+                    <div class="form-group"  >
+                       
+                        <div class="btn-group" >
+                           <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" >
+                                    <button  type="submit" class="dropdown-item"  >
+                                         <option *ngFor="let wkSt of _catClientes" [value]="wkSt.id">
+                                        <span>{{ wkSt.cCliente }}</span>
+                                      </option>
+                                    </button>
+                            </div>
+                           -->                                                              
+                            <section>
+                                    <label for="Clientes">Clientes</label>
+                                    <select class="btn btn-outline-info" style="background:white" name="Clientes" [(ngModel)]="_catClientes">
+                                      <option *ngFor="let catCliente of _catClientes" [value]="catCliente.iCliente">
+                                        <span>{{ catCliente.cCliente }}</span>
+                                      </option>
+                                    </select>
+                            </section>
+                            
+                            <section>
+                                    <label for="Usuarios">Usuarios</label>
+                                    <select class="btn btn-outline-info" style="background:white" name="Usuarios" [(ngModel)]="_catUsuarios" >
+                                        <option *ngFor="let catUsuario of _catUsuarios" [value]="catUsuario.iUsuario">
+                                            <span>{{ catUsuario.cUsuario }}</span>
+                                        </option>
+                                    </select>
+                            </section>
+                        </div>
+                        <br><br> 
+                        <div class="btn-group"  >                                                                                                                  
+                            <section>
+                                    <label for="Estatus">Estatus</label>
+                                    <select class="btn btn-outline-info" style="background:white" name="Estatus" [(ngModel)]="_catEstTareas">
+                                        <option *ngFor="let catEstTarea of _catEstTareas" [value]="catEstTarea.cEstatus">
+                                            <span>{{ catEstTarea.cEstatus }}</span>
+                                        </option>
+                                    </select>
+                            </section>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="" class="btn btn-primary">Guardar</button>
-                </div>
+                            <section>
+                                    <label for="TipoTarea">Tipo de Tarea</label>
+                                    <select class="btn btn-outline-info" style="background:white" name="TipoTarea" [(ngModel)]="_catTipoTareas">
+                                        <option *ngFor="let catTipoTarea of _catTipoTareas" [value]="catTipoTarea.cTipo">
+                                            <span>{{ catTipoTarea.cTipo }}</span>
+                                        </option>
+                                    </select>
+                            </section>                                                                                              
+                            </div>                 
+                    </div>
+                    <br>
+   
+                            <p>
+                                <label>Responsable</label>
+                                <input type="text" class="form-control" placeholder="Responsable" required autofocus
+                                #cResponsable="ngModel" name="cResponsable" [(ngModel)] = "_nuevo.cResponsable">
+                            </p>
+                            <p>
+                                <label>Descripcion</label>
+                                <textarea type="Observaciones" class="form-control" placeholder="descripcion" required
+                                #cDescripcion="ngModel" name="cDescripcion" [(ngModel)]= "_nuevo.cDescripcion"></textarea>
+                            </p>
+                            <p>
+                                <label>Notas</label>
+                                <textarea type="Observaciones" class="form-control" placeholder="Nota" required
+                                #cNotas="ngModel" name="cNotas" [(ngModel)]= "_nuevo.cNota"></textarea>                    
+                            </p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" (ngSubmit) = "crear()" class="btn btn-primary">Guardar</button>
+                            </div>
+                    </div>
+                </div>             
               </div>
             </div>
-          </div>
        </form>
 
-<br><br>
+<br><br> 
 
    
     <div class="col-lg-10">
@@ -86,6 +129,7 @@
                     <th>..</th>
                     <th>...</th>
                     <th>Estatus</th>
+                    <th>Usuario</th>
                     <th>Tipo de tarea</th>
                 </tr>
             </thead>
@@ -101,6 +145,7 @@
                         <td>{{opTarea.dtModificacion}}</td>
                         <td>{{opTarea.dtTerminado}}</td>
                         <td>{{opTarea.iEstatus}}</td>
+                        <td>{{opTarea.iUsuario}}</td>
                         <td>{{opTarea.iTipo}}</td>
                                     
                         <td>

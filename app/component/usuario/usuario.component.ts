@@ -38,7 +38,7 @@ export class UsuarioComponent {
         this._UsuarioService.getLista().subscribe((result) => {
 
             respuesta = result.body;
-            lista = respuesta.response.tt_catUsuario.tt_catUsuario;
+            lista = respuesta.response.tt_ctUsuario.tt_catUsuario;
 
             lista.forEach(renglon => {
 

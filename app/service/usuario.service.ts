@@ -28,7 +28,7 @@ export class UsuarioService {
          });
 
 
-         return this._http.get( '/taskService/catUsuario',  {observe: 'response' ,  headers: headers });
+         return this._http.get( '/taskService/ctUsuario',  {observe: 'response' ,  headers: headers });
     }
 
     /**
@@ -44,7 +44,7 @@ export class UsuarioService {
              }
          });
          console.log(request);
-         return this._http.post('/taskService/catUsuario', request  ,{observe: 'response', headers: this.headers});
+         return this._http.post('/taskService/ctUsuario', request  ,{observe: 'response', headers: this.headers});
     }
 
 }

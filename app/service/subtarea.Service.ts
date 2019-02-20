@@ -28,7 +28,7 @@ export class SubtareaService {
     */
 
     getLista() {
-        return this._http.get('/taskService/opeSubTarea', {observe: 'response', headers: this.headers});
+        return this._http.get('/taskService/opSubTarea', {observe: 'response', headers: this.headers});
     }
 
     /**
@@ -46,7 +46,7 @@ export class SubtareaService {
 
          console.log(request);
 
-         return this._http.post('/taskService/opeSubTarea', request, {observe: 'response', headers: this.headers});
+         return this._http.post('/taskService/opSubTarea', request, {observe: 'response', headers: this.headers});
      }
 
 }
