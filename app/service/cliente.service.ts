@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import { HttpClient , HttpHeaders } from '@angular/common/http';
+import {Injectable, ɵConsole} from '@angular/core';
+import { HttpClient , HttpHeaders  , HttpParams} from '@angular/common/http';
 import {catCliente} from '../modelos/catCliente';
 
 
@@ -65,17 +65,28 @@ export class ClienteService {
 
     eliminar(iCliente: string) {
 
-
-        console.log('cliente-->' + iCliente);
-        const headers = new HttpHeaders({
+        console.log('eliminar');
+       
+        /*const headers = new HttpHeaders({
             'AuthKey': '',
             'AuthToken': '',
             'Content-Type': 'application/json',
             'ID': iCliente
 
 
+         });*/
+
+         const headers: HttpHeaders  = new HttpHeaders({
+            'AuthKey': '',
+            'AuthToken': '',
+            'Content-Type': 'application/json' ,                    
          });
-         return this._http.delete( '/taskService/ctCliente', {observe: 'response' , headers: headers });
+
+
+         let params = new HttpParams().append('ID',iCliente);
+
+      
+         return this._http.delete( '/taskService/ctCliente',    { headers: headers  , observe: 'response'  , params:params });
 
 
     }

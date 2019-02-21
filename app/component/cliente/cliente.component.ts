@@ -53,7 +53,7 @@ export class ClienteComponent {
             respuesta = result.body;
 
             // guardo la lista en una variable y se agrega la respuesta tt_ctCliente del postman
-            lista = respuesta.response.tt_ctCliente.tt_catCliente;
+            lista = respuesta.response.tt_catCliente.tt_catCliente;
 
             // itera la lista del rest para convertir en objetos type script
             lista.forEach(renglon => {
