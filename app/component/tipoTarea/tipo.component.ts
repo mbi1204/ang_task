@@ -1,15 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router } from '@angular/router';
 import {TipoService} from '../../service/tipo.service';
 import { catTipoTarea } from '../../modelos/catTipoTarea';
 
 @Component({
-    selector :'tipo',
-    templateUrl:'tipo.component.html',
+    selector : 'tipo',
+    templateUrl: 'tipo.component.html',
     styleUrls: ['tipo.component.css'],
     providers: [TipoService]
 
-
+ 
 })
 
 export class TipoComponent {
@@ -41,7 +41,7 @@ export class TipoComponent {
         this._TipoService.getLista().subscribe((result) => {
 
             respuesta = result.body;
-            lista = respuesta.response.tt_ctTipoTarea.tt_catTipoTarea;
+            lista = respuesta.response.tt_catTipoTarea.tt_catTipoTarea;
 
             lista.forEach(renglon => {
                 // Crea objeto
@@ -76,8 +76,23 @@ export class TipoComponent {
 
         }); // service
     }
+
+    eliminar(iTipo: string) {
+        let respuesta, Mensage;
+
+        this._TipoService.eliminar(iTipo).subscribe((result) => {
+            respuesta = result.body;
+            Mensage = respuesta.response.opcMensage;
+            console.log(Mensage);
+
+        }, (error) => {
+
+            alert (error);
+        });
+    }
+
     refresh(): void {
-        //window.location.reload();
+        window.location.reload();
     }
 
 }

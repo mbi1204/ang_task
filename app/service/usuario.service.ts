@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient , HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catUsuario } from '../modelos/catUsuario';
 
 @Injectable()
@@ -34,17 +34,34 @@ export class UsuarioService {
     /**
      * Crear un registro en la base de Datos
      */
+    // tslint:disable-next-line:no-shadowed-variable
     crear(catUsuario: catUsuario) {
 
-        var tt_Nuevo = [catUsuario];
+        const tt_Nuevo = [catUsuario];
          const request = JSON.stringify({
-             "request":
+             'request':
              {
-                 "NuevoSet": {"tt_Nuevo": tt_Nuevo }
+                 'NuevoSet': {'tt_Nuevo': tt_Nuevo }
              }
          });
          console.log(request);
-         return this._http.post('/taskService/ctUsuario', request  ,{observe: 'response', headers: this.headers});
+         return this._http.post('/taskService/ctUsuario', request  , { observe: 'response', headers: this.headers});
+    }
+
+
+    eliminar(iUsuario: string) {
+        console.log('eliminame');
+
+        const headers: HttpHeaders = new HttpHeaders ({
+            'AuthKey': '',
+            'AuthToken': '',
+            'Content-Type': 'application/json'
+        });
+
+        const params = new HttpParams().append('ID', iUsuario);
+
+
+        return this._http.delete( '/taskService/ctUsuario',    { headers: headers  , observe: 'response'  , params: params });
     }
 
 }

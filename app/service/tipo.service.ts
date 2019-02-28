@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient , HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catTipoTarea } from '../modelos/catTipoTarea';
-
+ 
 
 
 
@@ -46,5 +46,20 @@ export class TipoService {
 
         return this._http.post('/taskService/ctTipoTarea', request, {observe: 'response', headers: this.headers});
      }
+
+     eliminar(iTipo: string) {
+
+        console.log('iTipo' + iTipo);
+
+        const headers: HttpHeaders = new HttpHeaders({
+            'AuthKey': '',
+            'AuthToken': '',
+            'Content-Type': 'application/json'
+        });
+
+        const params = new HttpParams().append('ID', iTipo);
+
+        return this._http.delete('/taskService/ctTipoTarea', {headers: headers, observe: 'response', params: params});
+    }
 
 }

@@ -46,7 +46,7 @@ export class SubtareaComponent {
             respuesta = result.body;
 
             //guardo la lista en una variable 
-            lista = respuesta.response.tt_opSubTarea.tt_opeSubTarea;
+            lista = respuesta.response.tt_opeSubTarea.tt_opeSubTarea;
 
             lista.forEach(renglon => {
 

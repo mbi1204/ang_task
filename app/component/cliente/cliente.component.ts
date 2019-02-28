@@ -116,10 +116,12 @@ eliminar(iCliente: string) {
 
 }
 
+
+
 refresh(): void {
     window.location.reload();
-}
-
     }
+
+}
 
 

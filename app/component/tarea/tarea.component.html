@@ -41,7 +41,7 @@
                         <div class="btn-group" >
                            <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" >
                                     <button  type="submit" class="dropdown-item"  >
-                                         <option *ngFor="let wkSt of _catClientes" [value]="wkSt.id">
+                                        <option *ngFor="let wkSt of _catClientes" [value]="wkSt.id">
                                         <span>{{ wkSt.cCliente }}</span>
                                       </option>
                                     </button>
@@ -117,7 +117,7 @@
 
    
     <div class="col-lg-10">
-        <table class="table table table-bordered table-hover ">
+        <table class="table table table-bordered table-hover " >
             <thead class="thead-striped">
                 <tr class="table-primary">
                     <th>Id Tarea</th>
@@ -135,7 +135,7 @@
             </thead>
                 <tbody> 
                     <!-- imprime valores variable html let of array ts-->
-                    <tr *ngFor="let opTarea of _opeTareas"> 
+                    <tr *ngFor="let opTarea of _opeTareas " > 
                         <td>{{opTarea.iTarea}}</td>
                         <td>{{opTarea.iCliente}}</td>
                         <td>{{opTarea.cResponsable}}</td>
@@ -149,35 +149,35 @@
                         <td>{{opTarea.iTipo}}</td>
                                     
                         <td>
-                        <button  data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
+                        <button  data-toggle="modal" data-target="#exampleModalLong " class="btn btn-sm btn-primary">
                         Editar</button> 
                         </td>
-                        <td>
-                            <button  class="btn btn-sm btn-danger">
-                            Eliminar</button> 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <td>                    
+                        <a href="#exampleModal-{{opTarea.iTarea}}" role="button" 
+                           class="btn btn-sm btn-danger" data-toggle="modal" >
+                            Eliminar
+                        </a>                          
+                              <!-- Modal-- se agrega el ID concatendo el campo para qeu borre el indicado -->
+                             <div class="modal fade" id="exampleModal-{{opTarea.iTarea}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar cliente</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            </div>
-                                        <div class="modal-body">
-                                            ¿Estas seguro que quieres borrar el cliente <strong>{{opTarea.iTarea}}</strong> ?
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>{{opTarea.iTarea}}</p> 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <button type="button"  class="btn btn-danger">Eliminar</button>
-                                        </div>
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar tarea</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                            ¿Estas seguro que quieres borrar la tarea  
+                                            <strong>{{opTarea.iTarea}} de {{opTarea.cResponsable}}</strong> ?
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" (click)="eliminar(opTarea.iTarea)" (click)="refresh()" class="btn btn-danger">Eliminar</button>
+                                      </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>                          
                         </td>
                     </tr>                                                   
                 </tbody>

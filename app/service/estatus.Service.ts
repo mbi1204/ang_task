@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient , HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {catEstTarea } from '../modelos/catEstTarea';
 
 
@@ -19,13 +19,27 @@ export class EstatusService {
         'Content-Type': 'application/json'
      });
     /*
-        getLista
+    getLista
         Notas: Devuelve el lsitado de los estatus
     */
 
     getLista() {
 
          return this._http.get( '/taskService/ctEstTarea',  {observe: 'response' ,  headers: this.headers });
+    }
+
+    /*
+        getRegistro, devueleve solo un solo regis
+    */
+    getRegistro(iEstatus: string) {
+        const headers: HttpHeaders  = new HttpHeaders({
+            'AuthKey': '',
+            'AuthToken': '',
+            'Content-Type': 'application/json',
+         });
+          const params = new HttpParams().append('ID', iEstatus);
+
+        return this._http.get('/taskService/ctEstTarea-1/', { headers: headers, observe: 'response', params: params});
     }
 
     /**
@@ -47,18 +61,21 @@ export class EstatusService {
     }
 
     eliminar(iEstatus: string) {
-        const headers = new HttpHeaders({
+
+        console.log('iEstatus' + iEstatus);
+        const headers: HttpHeaders = new HttpHeaders({
             'AuthKey': '',
             'AuthToken': '',
             'Content-Type': 'application/json',
-            'ID': iEstatus,
-
 
          });
-         return this._http.delete( '/taskService/ctEstTarea',  {observe: 'response' , headers: this.headers });
+         // Se pasan los parametros(progres) por el params
+         const params = new HttpParams().append('ID', iEstatus);
 
-
+         return this._http.delete( '/taskService/ctEstTarea',  {headers: headers, observe: 'response' , params: params});
     }
+
+
 
 
 }

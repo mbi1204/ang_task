@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient , HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {opeTarea} from '../modelos/opeTarea';
 
 
@@ -41,6 +41,28 @@ export class TareaService {
         console.log(request);
 
         return this._http.post('/taskService/opTarea', request  , {observe: 'response', headers: this.headers});
+    }
+
+     /**
+     * Elimina registro en la base de Datos
+     */
+
+    eliminar(iTarea: string) {
+
+        console.log('ID' + iTarea);
+
+         const headers: HttpHeaders  = new HttpHeaders({
+            'AuthKey': '',
+            'AuthToken': '',
+            'Content-Type': 'application/json'
+         });
+
+
+        const params = new HttpParams().append('ID', iTarea);
+
+         return this._http.delete( '/taskService/opTarea',    { headers: headers  , observe: 'response'  , params: params });
+
+
     }
 
 }

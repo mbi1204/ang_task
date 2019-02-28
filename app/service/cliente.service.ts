@@ -45,7 +45,7 @@ export class ClienteService {
 
          console.log(request);
 
-         return this._http.post('/taskService/ctCliente', request  , {observe: 'response', headers: this.headers});
+         return this._http.post('/taskService/ctCliente', request , {observe: 'response', headers: this.headers});
     }
 
 
@@ -55,8 +55,8 @@ export class ClienteService {
 
     modificar() {
 
-         return this._http.put( '/taskService/ctCliente', {observe: 'response' , headers: this.headers });
 
+         return this._http.put( '/taskService/ctCliente',  {observe: 'response' , headers: this.headers });
     }
 
     /**
@@ -66,27 +66,23 @@ export class ClienteService {
     eliminar(iCliente: string) {
 
         console.log('eliminar');
-       
+
         /*const headers = new HttpHeaders({
             'AuthKey': '',
             'AuthToken': '',
             'Content-Type': 'application/json',
             'ID': iCliente
-
-
          });*/
-
          const headers: HttpHeaders  = new HttpHeaders({
             'AuthKey': '',
             'AuthToken': '',
-            'Content-Type': 'application/json' ,                    
+            'Content-Type': 'application/json' ,
          });
 
+         const params = new HttpParams().append('ID', iCliente);
 
-         let params = new HttpParams().append('ID',iCliente);
 
-      
-         return this._http.delete( '/taskService/ctCliente',    { headers: headers  , observe: 'response'  , params:params });
+         return this._http.delete( '/taskService/ctCliente',    { headers: headers  , observe: 'response'  , params: params });
 
 
     }

@@ -99,10 +99,12 @@
                         Editar</button> 
                     </td>
                     <td>
-                        <button  class="btn btn-sm btn-danger">
-                        Eliminar</button> 
+                        <a href="#exampleModal-{{ctUsuario.iUsuario}}" role="button" 
+                            class="btn btn-sm btn-danger" data-toggle="modal" >
+                            Eliminar
+                        </a>      
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal-{{ctUsuario.iUsuario}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -112,14 +114,12 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        ¿Estas seguro que quieres borrar el usuario <strong>{{ctUsuario.iUsuario}}</strong> ?
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>{{ctUsuario.iUsuario}}</p> 
+                                        ¿Estas seguro que quieres borrar el usuario
+                                         <strong>{{ctUsuario.cUsuario}} con ID {{ctUsuario.iUsuario}}</strong> ?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="button"  class="btn btn-danger">Eliminar</button>
+                                        <button type="submit" (click)="eliminar(ctUsuario.iUsuario)" (click)="refresh()"  class="btn btn-danger">Eliminar</button>
                                     </div>
                                 </div>
                             </div>

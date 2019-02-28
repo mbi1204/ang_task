@@ -26,10 +26,13 @@ import { catTipoTarea } from '../../modelos/catTipoTarea';
 })
 
 export class TareaComponent implements OnInit {
+// atributos
 
-
+    // crea objetos para la lista
     public _opeTarea: opeTarea;
+    // lista del modelo
     public _opeTareas: Array<opeTarea> = [];
+    // guarda la lista nueva
     public _nuevo: opeTarea;
 /* Se agregan los objetos utilizados de los otros componentes*/
     public _catCliente: catCliente;
@@ -54,6 +57,7 @@ export class TareaComponent implements OnInit {
 
                 ) {
         console.log('tarea Component');
+        // Instancia el  objeto
         this._nuevo = new opeTarea (0, 0, '', '', '', null, null, null, 0 , 0 , 0);
 
 
@@ -91,7 +95,7 @@ export class TareaComponent implements OnInit {
             respuesta = result.body;
 
 
-            lista = respuesta.response.tt_opTarea.tt_opeTarea;
+            lista = respuesta.response.tt_opeTarea.tt_opeTarea;
 
 
             lista.forEach(renglon => {
@@ -155,7 +159,7 @@ export class TareaComponent implements OnInit {
 
             respuesta = result.body;
 
-            lista = respuesta.response.tt_ctCliente.tt_catCliente;
+            lista = respuesta.response.tt_catCliente.tt_catCliente;
 
             lista.forEach(renglon => {
 
@@ -185,7 +189,7 @@ export class TareaComponent implements OnInit {
         this._UsuarioService.getLista().subscribe((result) => {
 
             respuesta = result.body;
-            lista = respuesta.response.tt_ctUsuario.tt_catUsuario;
+            lista = respuesta.response.tt_catUsuario.tt_catUsuario;
 
             lista.forEach(renglon => {
 
@@ -220,7 +224,7 @@ export class TareaComponent implements OnInit {
 
             respuesta = result.body;
 
-            lista = respuesta.response.tt_ctEstTarea.tt_catEstTarea;
+            lista = respuesta.response.tt_catEstTarea.tt_catEstTarea;
 
             lista.forEach(renglon => {
 
@@ -247,7 +251,7 @@ export class TareaComponent implements OnInit {
         this._TipoService.getLista().subscribe((result) => {
 
             respuesta = result.body;
-            lista = respuesta.response.tt_ctTipoTarea.tt_catTipoTarea;
+            lista = respuesta.response.tt_catTipoTarea.tt_catTipoTarea;
 
             lista.forEach(renglon => {
                 // Crea objeto
@@ -263,6 +267,26 @@ export class TareaComponent implements OnInit {
             }, (error) => {
                 alert(error);
         });
+    }
+
+    eliminar(iTarea: string) {
+
+        let respuesta, Mensage;
+
+        this._TareaService.eliminar(iTarea).subscribe((result) => {
+            respuesta = result.body;
+            Mensage = respuesta.response.opcMensage;
+            console.log(Mensage);
+
+        }, (error) => {
+
+            alert (error);
+        });
+    }
+
+
+    refresh(): void {
+        window.location.reload();
     }
 
 

@@ -68,14 +68,38 @@
                     <td>{{ctTipoTarea.cTipo}}</td>                   
                     <td>{{ctTipoTarea.lActivo ? "Si":"No"}} </td>
                           
-                        <td>
-                            <button data-toggle="modal" data-target="#exampleModalLong"class="btn btn-sm btn-primary">
-                            Editar</button> 
-                        </td>
-                        <td>
-                            <button  class="btn btn-sm btn-danger">
-                            Eliminar</button> 
-                        </td>                                      
+                    <td>
+                        <button data-toggle="modal" data-target="#exampleModalLong"class="btn btn-sm btn-primary">
+                        Editar</button> 
+                    </td>
+                    <td>                    
+                        <a href="#exampleModal-{{ctTipoTarea.iTipo}}" role="button" 
+                            class="btn btn-sm btn-danger" data-toggle="modal" >
+                            Eliminar
+                        </a>                          
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal-{{ctTipoTarea.iTipo}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar cliente</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Estas seguro que quieres borrar la tarea  
+                                        <strong>{{ctTipoTarea.iTipo}} {{ctTipoTarea.cTipo}}</strong> ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" (click)="eliminar(ctTipoTarea.iTipo)" (click)="refresh()" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                          
+                    </td>
+
                 </tr>                    
             </tbody>
         </table>
