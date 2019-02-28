@@ -121,7 +121,7 @@ export class EstatusComponent implements OnInit {
 
 
     modificar (){
-        console.log("modificar"  + this._catEstTarea.iEstatus);
+        console.log("modificar c"  + this._catEstTarea.iEstatus);
         console.log(""    +  this._catEstTarea.cEstatus);
 
     }
