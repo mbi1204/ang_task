@@ -28,7 +28,7 @@ export class EstatusComponent implements OnInit {
         console.log('estatus Component');
         // crea la instancia de la lista vacia por defecto
         this._nuevo = new catEstTarea(0 , '' , true);
-       // this._nuevoReg = new catEstTarea (0, '', true);
+        this._nuevoReg = new catEstTarea (0, '', true);
 
 
     }
@@ -68,10 +68,10 @@ export class EstatusComponent implements OnInit {
 
     /*Trae un solo registro*/
     registro(iEstatus: string)  {
-        console.log('leee registro' );
+        console.log('leee registro' + iEstatus );
 
         let respuesta, lista;
-        this._catEstTareas = [];
+      //  this._catEstTareas = [];
 
         this._EstatusService.getRegistro(iEstatus).subscribe((result) => {
 
@@ -95,6 +95,11 @@ export class EstatusComponent implements OnInit {
             alert(error);
 
         }); // service
+
+
+        console.log("fin"  + this._catEstTarea.iEstatus);
+        console.log(""    +  this._catEstTarea.cEstatus);
+
     }
 
 
@@ -112,6 +117,13 @@ export class EstatusComponent implements OnInit {
 
             alert (error);
         }); // service
+    }
+
+
+    modificar (){
+        console.log("modificar"  + this._catEstTarea.iEstatus);
+        console.log(""    +  this._catEstTarea.cEstatus);
+
     }
 
 
