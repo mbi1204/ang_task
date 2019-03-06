@@ -30,6 +30,18 @@ export class TareaService {
          return this._http.get( '/taskService/opTarea',  {observe: 'response' ,  headers: this.headers });
     }
 
+    getRegistro(iTarea: string) {
+        const headers: HttpHeaders  = new HttpHeaders({
+            'AuthKey': '',
+            'AuthToken': '',
+            'Content-Type': 'application/json',
+         });
+         // Se psan los parametros como en el prog..
+          const params = new HttpParams().append('ID', iTarea);
+
+        return this._http.get('/taskService/opTarea-1/', { headers: headers, observe: 'response', params: params});
+    }
+
     crear(_opeTarea: opeTarea ) {
         const tt_Nuevo = [_opeTarea];
         const request = JSON.stringify ( {
@@ -44,10 +56,27 @@ export class TareaService {
     }
 
      /**
+     * Modifica registro en la base de Batos
+     */
+
+    modificar(_opeTarea:  opeTarea) {
+        const tt_Nuevo = [_opeTarea];
+        const request = JSON.stringify({
+            'request':
+            {
+                'NuevoSet': {'tt_Nuevo': tt_Nuevo}
+            }
+        });
+        return this._http.put('/taskService/opTarea', request, {observe: 'response', headers: this.headers});
+
+    }
+
+     /**
      * Elimina registro en la base de Datos
      */
 
     eliminar(iTarea: string) {
+
 
         console.log('ID' + iTarea);
 

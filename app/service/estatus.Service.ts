@@ -59,6 +59,20 @@ export class EstatusService {
 
         return this._http.post('/taskService/ctEstTarea', request, { observe: 'response', headers: this.headers});
     }
+     /*
+     * Actualiza un registro
+     */
+    modificar(_catEstTarea: catEstTarea) {
+        const tt_Nuevo = [_catEstTarea];
+        const request = JSON.stringify({
+            'request':
+            {
+                'NuevoSet': {'tt_Nuevo': tt_Nuevo}
+            }
+        });
+        return this._http.put('/taskService/ctEstTarea', request, {observe: 'response', headers: this.headers});
+
+    }
 
     eliminar(iEstatus: string) {
 

@@ -34,10 +34,10 @@
             <div class="modal-body">
               <div class="form-group ">
                   <p>
-                      <label>ID</label>
+                      <!--<label>ID</label>
                       <input type="text" class="form-control" placeholder="Nombre del estatus" required autofocus
                       #cEstatus="ngModel" name="cEstatus" [(ngModel)] = "_nuevo.iEstatus">
-                   </p>
+                   </p>-->
                 <p>
                    <label>Estatus</label>
                    <input type="text" class="form-control" placeholder="Nombre del estatus" required autofocus
@@ -74,9 +74,10 @@
             <td>{{ctEstTarea.cEstatus}}</td>
             <td>{{ctEstTarea.lActivo ? "Si":"No"}}</td>
           
+          
             <!--Modal-- Formulario para Editar ccc-->                     
             <td>  
-                <button type="button" (click)="registro(ctEstTarea.iEstatus)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modificar">
+                <button type="text" value="Texto" readonly  (click)="registro(ctEstTarea.iEstatus)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modificar">
                 Editar</button> 
                 
                 <form class="form-row" #formEditar ="ngForm" id ="formEditar" (ngSubmit) = "modificar()">
@@ -93,15 +94,18 @@
                               <div class="form-group ">
                                   <p>
                                       <label>ID</label>
-                                      <input type="text" class="form-control" placeholder="Nombre del estatus" required autofocus
-                                      #_catEstTarea.iEstatus="ngModel" name="iEstatus" [(ngModel)]= "_catEstTarea.iEstatus">
-                                                                                        
+                                      <input type="text" readonly onmousedown="return false;" class="form-control" placeholder="Nombre del estatus" required autofocus
+                                      #_catEstTarea.iEstatus="ngModel" name="iEstatus" [(ngModel)]= "_catEstTarea.iEstatus">                                                                                      
                                   </p>
                                 <p>
                                   <label>Estatus</label>
                                   <input type="text" class="form-control" placeholder="Nombre del estatus" required autofocus
-                                  #cEstatus="ngModel" name="cEstatus" [(ngModel)] = "_catEstTarea.cEstatus" >
-                                                                                      
+                                  #cEstatus="ngModel" name="cEstatus"  [(ngModel)] = "_catEstTarea.cEstatus" >                                                                                      
+                                </p>
+                                <p>
+                                  <label>Activo</label>
+                                  <input type="checkbox" readonly onmousedown="return false;"  aria-label="Text input with checkbox" required autofocus
+                                  #lActivo="ngModel" name="lActivo"   [(ngModel)] = "_catEstTarea.lActivo" >                                                                                      
                                 </p>
                               </div>
                                   
@@ -114,13 +118,10 @@
                           </div>    
                       </div>
                   </div>
-                </form>                  
-
-               
-             
+                </form>                             
             </td>
 
-            <!--Borrar-->
+            <!--Borrar--Se concatena el iEstatus para podel eliminar por regsitro-->
             <td> 
               <a href="#exampleModal-{{ctEstTarea.iEstatus}}" role="button" 
                 class="btn btn-sm btn-danger" data-toggle="modal" >

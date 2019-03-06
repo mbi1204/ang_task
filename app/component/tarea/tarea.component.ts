@@ -58,10 +58,10 @@ export class TareaComponent implements OnInit {
                 ) {
         console.log('tarea Component');
         // Instancia el  objeto
-        this._nuevo = new opeTarea (0, 0, '', '', '', null, null, null, 0 , 0 , 0);
+        this._nuevo = new opeTarea (0, 0, '', '', '', null, null, null, 0 , 0 , 0, '', null, null, '', 0  );
 
 
-}
+    }
 
     ngOnInit(): void {
         console.log('tarea.component.ts');
@@ -79,13 +79,13 @@ export class TareaComponent implements OnInit {
         console.log('tipotarea');
         this.listaTipo();
 
-
     }
 
     lista() {
         console.log('lista()');
 
         let respuesta, lista;
+        // limpia la lista
         this._opeTareas = [];
 
 
@@ -93,7 +93,6 @@ export class TareaComponent implements OnInit {
             // resultado
 
             respuesta = result.body;
-
 
             lista = respuesta.response.tt_opeTarea.tt_opeTarea;
 
@@ -112,7 +111,12 @@ export class TareaComponent implements OnInit {
                     renglon.dtTerminado,
                     renglon.iEstatus,
                     renglon.iUsuario,
-                    renglon.iTipo
+                    renglon.iTipo,
+                    renglon.cActividad,
+                    renglon.dtSolicitud,
+                    renglon.dtInicio,
+                    renglon.cSolicitante,
+                    renglon.deAvance
 
                 );
                // guarda objeto en la lista
@@ -127,6 +131,44 @@ export class TareaComponent implements OnInit {
         }); // service
 
     } // lista
+
+    /******Trae un solo registro*******/
+    registro(iTarea: string) {
+        console.log('lee registro' + iTarea);
+
+        let respuesta, lista;
+
+        this._TareaService.getRegistro(iTarea).subscribe((result) => {
+            respuesta = result.body;
+
+            lista = respuesta.response.tt_opeTarea.tt_opeTarea;
+
+            lista.forEach(renglon => {
+
+                // crea objeto
+                this._opeTarea = new opeTarea(
+                    renglon.iTarea,
+                    renglon.iCliente,
+                    renglon.cResponsable,
+                    renglon.cDescripcion,
+                    renglon.cNota,
+                    renglon.dtCreacion,
+                    renglon.dtModificacion,
+                    renglon.dtTerminado,
+                    renglon.iEstatus,
+                    renglon.iUsuario,
+                    renglon.iTipo,
+                    renglon.cActividad,
+                    renglon.dtSolicitud,
+                    renglon.dtInicio,
+                    renglon.cSolicitante,
+                    renglon.deAvance
+
+                );
+                    console.log(this._opeTarea.iTarea);
+            });
+        });
+    }
 
 
 
@@ -148,7 +190,7 @@ export class TareaComponent implements OnInit {
         });
     }
 
-    /*Metodo para la lista de clientes en formulario*/
+    /********Metodo para la lista de clientes en formulario*********/
     listaClientes() {
         console.log('listaClientes()');
 
@@ -163,7 +205,7 @@ export class TareaComponent implements OnInit {
 
             lista.forEach(renglon => {
 
-              //  console.log('renglo->' + renglon.cCliente);
+              //  console.log('renglon->' + renglon.cCliente);
                 this._catCliente = new catCliente(
                     renglon.iCliente,
                     renglon.cCliente,
@@ -176,11 +218,10 @@ export class TareaComponent implements OnInit {
         }, (error) => {
             alert(error);
         });
-
         // return   this._catClientes;
     }
 
-
+    /*****Metodo para la lista de usuarios en formulario******/
     listaUsuarios() {
         console.log('lista ()');
         let respuesta, lista;
@@ -214,6 +255,7 @@ export class TareaComponent implements OnInit {
         }); // service
     }// lista
 
+    /*****Metodo para la lista de estatus en formulario********/
     listaEstatus () {
         console.log('lista()');
 
@@ -241,7 +283,7 @@ export class TareaComponent implements OnInit {
         }); // service
     } // lista
 
-
+    /*******Metodo para la lista de tipo de tareas en formulario*******/
     listaTipo() {
         console.log('lista()');
 
@@ -269,6 +311,17 @@ export class TareaComponent implements OnInit {
         });
     }
 
+    /*****Actualiza los registros del fomulario******/
+    modificar () {
+        let respuesta;
+
+        this._TareaService.modificar(this._opeTarea).subscribe((result) => {
+            respuesta = result.body;
+        });
+        console.log('modificar c'  + this._opeTarea.iTarea);
+    }
+
+
     eliminar(iTarea: string) {
 
         let respuesta, Mensage;
@@ -288,8 +341,4 @@ export class TareaComponent implements OnInit {
     refresh(): void {
         window.location.reload();
     }
-
-
 }
-
-

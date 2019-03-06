@@ -21,17 +21,17 @@ export class EstatusComponent implements OnInit {
     public _catEstTareas: Array<catEstTarea> = [];
     // guarda la lista nueva
     public _nuevo: catEstTarea;
-    public _nuevoReg: catEstTarea;
+    // public _nuevoReg: catEstTarea;
 
     constructor( private _EstatusService: EstatusService) {
 
         console.log('estatus Component');
         // crea la instancia de la lista vacia por defecto
         this._nuevo = new catEstTarea(0 , '' , true);
-        this._nuevoReg = new catEstTarea (0, '', true);
-
+        // this._nuevoReg = new catEstTarea (0, '', true);
 
     }
+
 
     ngOnInit (): void {
     console.log('estatus.component.ts');
@@ -42,6 +42,7 @@ export class EstatusComponent implements OnInit {
         console.log('lista()');
 
         let respuesta, lista;
+        // limpia al mostrar
         this._catEstTareas = [];
 
         this._EstatusService.getLista().subscribe((result) => {
@@ -73,6 +74,7 @@ export class EstatusComponent implements OnInit {
         let respuesta, lista;
       //  this._catEstTareas = [];
 
+        // Se pasa el parametro
         this._EstatusService.getRegistro(iEstatus).subscribe((result) => {
 
             respuesta = result.body;
@@ -97,8 +99,8 @@ export class EstatusComponent implements OnInit {
         }); // service
 
 
-        console.log("fin"  + this._catEstTarea.iEstatus);
-        console.log(""    +  this._catEstTarea.cEstatus);
+        console.log('fin'  + this._catEstTarea.iEstatus);
+        console.log(''    +  this._catEstTarea.cEstatus);
 
     }
 
@@ -119,27 +121,32 @@ export class EstatusComponent implements OnInit {
         }); // service
     }
 
+    /* Actualiza los registros del fomulario*/
+    modificar () {
+        let respuesta;
 
-    modificar (){
-        console.log("modificar c"  + this._catEstTarea.iEstatus);
-        console.log(""    +  this._catEstTarea.cEstatus);
+        this._EstatusService.modificar(this._catEstTarea).subscribe((result) => {
+            respuesta = result.body;
+        });
+        console.log('modificar c'  + this._catEstTarea.iEstatus);
+        console.log(''    +  this._catEstTarea.cEstatus);
 
     }
 
 
-eliminar(iEstatus: string) {
-    console.log('yaaa', iEstatus);
-    let respuesta, Mensage;
-    this._EstatusService.eliminar(iEstatus).subscribe((result) =>  {
-        // guardo la respuesta en una variable del body
-        respuesta = result.body;
-        Mensage = respuesta.response.opcMensage;
+    eliminar(iEstatus: string) {
+        console.log('yaaa', iEstatus);
+        let respuesta, Mensage;
+        this._EstatusService.eliminar(iEstatus).subscribe((result) =>  {
+            // guardo la respuesta en una variable del body
+            respuesta = result.body;
+            Mensage = respuesta.response.opcMensage;
 
-    }, (error) =>  {
+        }, (error) =>  {
 
-        alert (error);
+            alert (error);
 
-    }); // service
+        }); // service
 
 }
 

@@ -9,7 +9,7 @@ import { catTipoTarea } from '../../modelos/catTipoTarea';
     styleUrls: ['tipo.component.css'],
     providers: [TipoService]
 
- 
+
 })
 
 export class TipoComponent {
@@ -59,6 +59,41 @@ export class TipoComponent {
         });
     }
 
+    /*****Trae un solo registro********/
+    registro(iTipo: string)  {
+        console.log('leee registro' + iTipo );
+
+        let respuesta, lista;
+      // this._catEstTareas = [];
+
+        /*Se pasa el parametro*/
+        this._TipoService.getRegistro(iTipo).subscribe((result) => {
+
+            respuesta = result.body;
+
+            lista = respuesta.response.tt_catTipoTarea.tt_catTipoTarea;
+
+            lista.forEach(renglon => {
+
+                this._catTipoTarea = new catTipoTarea (
+                    renglon.iTipo,
+                    renglon.cTipo,
+                    renglon.lActivo
+                );
+
+               // this._catEstTareas.push(this._catEstTarea);
+            });
+        }, (error) => {
+            alert(error);
+
+        }); // service
+
+
+        console.log('fin'  + this._catTipoTarea.iTipo);
+        console.log(''    +  this._catTipoTarea.cTipo);
+
+    }
+
     crear() {
 
         console.log('crear');
@@ -76,6 +111,19 @@ export class TipoComponent {
 
         }); // service
     }
+
+      /*****Actualiza los registros del fomulario******/
+      modificar () {
+        let respuesta;
+
+        this._TipoService.modificar(this._catTipoTarea).subscribe((result) => {
+            respuesta = result.body;
+        });
+        console.log('modificar c'  + this._catTipoTarea.iTipo);
+        console.log(''    +  this._catTipoTarea.cTipo);
+
+    }
+
 
     eliminar(iTipo: string) {
         let respuesta, Mensage;

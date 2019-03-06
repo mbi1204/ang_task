@@ -78,50 +78,79 @@ export class ClienteComponent {
 
     } // lista
 
+    registro(iCliente: string) {
+        console.log('lee registro' + iCliente);
 
+        let respuesta, lista;
 
-crear() {
+        this._ClienteService.getRegistro(iCliente).subscribe((result) => {
+            respuesta = result.body;
 
-    console.log('crear');
+            lista = respuesta.response.tt_catCliente.tt_catCliente;
 
-    let respuesta;
+            lista.forEach(renglon => {
 
-    this._ClienteService.crear(this._nuevo).subscribe((result) =>  {
-        // guardo la respuesta en una variable del body
-        respuesta = result.body;
-    }, (error) => {
-
-        alert (error);
-
-    }); // service
-}
-
-
-eliminar(iCliente: string) {
-    console.log('yaaa', iCliente);
-
-    // tslint:disable-next-line:prefer-const
-    let respuesta, Mensage;
-    this._ClienteService.eliminar(iCliente).subscribe((result) =>  {
-        // guardo la respuesta en una variable del body
-        respuesta = result.body;
-        Mensage = respuesta.response.opcMensage;
-
-        console.log(Mensage);
-    }, (error) =>  {
-
-        alert (error);
-
-    }); // service
-
-}
-
-
-
-refresh(): void {
-    window.location.reload();
+                // crea objeto
+                this._catCliente = new catCliente(
+                    renglon.iCliente,
+                    renglon.cCliente,
+                    renglon.cRazonS,
+                    renglon.lActivo
+                );
+                    console.log(this._catCliente.iCliente);
+            });
+        });
     }
 
-}
+    crear() {
+
+        console.log('crear');
+
+        let respuesta;
+
+        this._ClienteService.crear(this._nuevo).subscribe((result) =>  {
+            // guardo la respuesta en una variable del body
+            respuesta = result.body;
+        }, (error) => {
+
+            alert (error);
+
+        }); // service
+    }
+
+    modificar () {
+        let respuesta;
+        this._ClienteService.modificar(this._catCliente).subscribe((result) => {
+            respuesta = result.body;
+        });
+
+    }
+
+    eliminar(iCliente: string) {
+        console.log('yaaa', iCliente);
+
+        // tslint:disable-next-line:prefer-const
+        let respuesta, Mensage;
+        this._ClienteService.eliminar(iCliente).subscribe((result) =>  {
+            // guardo la respuesta en una variable del body
+            respuesta = result.body;
+            Mensage = respuesta.response.opcMensage;
+
+            console.log(Mensage);
+        }, (error) =>  {
+
+            alert (error);
+
+        }); // service
+
+    }
+
+
+
+    refresh(): void {
+        window.location.reload();
+        }
+
+    }
 
 

@@ -37,54 +37,49 @@
                 <div class="modal-body">
             
                     <div class="form-group"  >
-                       
-                        <div class="btn-group" >
-                           <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" >
-                                    <button  type="submit" class="dropdown-item"  >
-                                        <option *ngFor="let wkSt of _catClientes" [value]="wkSt.id">
-                                        <span>{{ wkSt.cCliente }}</span>
-                                      </option>
-                                    </button>
-                            </div>
-                           -->                                                              
-                            <section>
+                        <div class="col-md-12">    
+                            <div class="btn-group" >                                             
+                                <section>
                                     <label for="Clientes">Clientes</label>
-                                    <select class="btn btn-outline-info" style="background:white" name="Clientes" [(ngModel)]="_catClientes">
+                                    <select class="btn btn-outline-info" style="background:white" style="color:grey" name="Clientes" [(ngModel)]="_catClientes">
                                       <option *ngFor="let catCliente of _catClientes" [value]="catCliente.iCliente">
                                         <span>{{ catCliente.cCliente }}</span>
                                       </option>
                                     </select>
-                            </section>
+                                </section>
                             
                             <section>
                                     <label for="Usuarios">Usuarios</label>
-                                    <select class="btn btn-outline-info" style="background:white" name="Usuarios" [(ngModel)]="_catUsuarios" >
+                                    <select class="btn btn-outline-info" style="background:white" style="color:grey" name="Usuarios" [(ngModel)]="_catUsuarios" >
                                         <option *ngFor="let catUsuario of _catUsuarios" [value]="catUsuario.iUsuario">
                                             <span>{{ catUsuario.cUsuario }}</span>
                                         </option>
                                     </select>
                             </section>
-                        </div>
-                        <br><br> 
-                        <div class="btn-group"  >                                                                                                                  
+
                             <section>
                                     <label for="Estatus">Estatus</label>
-                                    <select class="btn btn-outline-info" style="background:white" name="Estatus" [(ngModel)]="_catEstTareas">
+                                    <select class="btn btn-outline-info" style="background:white" style="color:grey" name="Estatus" [(ngModel)]="_catEstTareas">
                                         <option *ngFor="let catEstTarea of _catEstTareas" [value]="catEstTarea.cEstatus">
                                             <span>{{ catEstTarea.cEstatus }}</span>
                                         </option>
                                     </select>
                             </section>
 
+                        </div>
+                        <br><br>
+                        <div class="btn-group"  >                                                                                                                  
+                                <div class="col-md-5">
                             <section>
                                     <label for="TipoTarea">Tipo de Tarea</label>
-                                    <select class="btn btn-outline-info" style="background:white" name="TipoTarea" [(ngModel)]="_catTipoTareas">
+                                    <select class="btn btn-outline-info" style="background:white" style="color:grey" name="TipoTarea" [(ngModel)]="_catTipoTareas">
                                         <option *ngFor="let catTipoTarea of _catTipoTareas" [value]="catTipoTarea.cTipo">
                                             <span>{{ catTipoTarea.cTipo }}</span>
                                         </option>
                                     </select>
                             </section>                                                                                              
-                            </div>                 
+                            </div> 
+                        </div>                
                     </div>
                     <br>
    
@@ -93,6 +88,27 @@
                                 <input type="text" class="form-control" placeholder="Responsable" required autofocus
                                 #cResponsable="ngModel" name="cResponsable" [(ngModel)] = "_nuevo.cResponsable">
                             </p>
+                            <p>
+                                <label>Actividad</label>
+                                <textarea type="test" class="form-control" placeholder="Actividad" required
+                                #cActividad="ngModel" name="cActividad" [(ngModel)]= "_nuevo.cActividad"></textarea>
+                            </p>
+                            <p>
+                                <label>Fecha de Solicitud</label>
+                                <input type="date" class="form-control" placeholder="Fecha de solicitud" required
+                                #dtSolicitud="ngModel" name="dtSolicitud" [(ngModel)] = '_nuevo.dtSolicitud'>
+                            </p>
+                            <p>
+                                <label>Fecha de Inicio</label>
+                                <input type="date" class="form-control" placeholder="Fecha de Inicio" required
+                                #dtInicio="ngModel" name="dtInicio" [(ngModel)] = '_nuevo.dtInicio'>
+                            </p>
+                            <p>
+                                <label>Solicitante</label>
+                                <textarea type="text" class="form-control" placeholder="Solicitante" required
+                                #cSolicitante="ngModel" name="cSolicitante" [(ngModel)]= "_nuevo.cSolicitante"></textarea>
+                            </p>
+                                                    
                             <p>
                                 <label>Descripcion</label>
                                 <textarea type="Observaciones" class="form-control" placeholder="descripcion" required
@@ -111,11 +127,12 @@
                 </div>             
               </div>
             </div>
+        </div>
        </form>
 
 <br><br> 
 
-   
+    <div class="responsive">
     <div class="col-lg-10">
         <table class="table table table-bordered table-hover " >
             <thead class="thead-striped">
@@ -124,13 +141,19 @@
                     <th>Id Cliente</th>
                     <th>Responsable</th>
                     <th>Descripcion</th>
-                    <th>Nota</th>
-                    <th>Creacion</th>
-                    <th>..</th>
-                    <th>...</th>
-                    <th>Estatus</th>
+                    <th>Nota</th>                           
+                     <!--<th>Estatus</th>
                     <th>Usuario</th>
-                    <th>Tipo de tarea</th>
+                    <th>Tipo de tarea</th>-->
+                    <th>Actividad</th>
+                    <th>Fecha de Solicitud</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Solicitante</th>
+                    <th>Avance</th>
+
+
+
+
                 </tr>
             </thead>
                 <tbody> 
@@ -141,22 +164,145 @@
                         <td>{{opTarea.cResponsable}}</td>
                         <td>{{opTarea.cDescripcion}}</td>
                         <td>{{opTarea.cNota}}</td>
-                        <td>{{opTarea.dtCreacion}}</td>
+                        <!--<td>{{opTarea.dtCreacion}}</td>
                         <td>{{opTarea.dtModificacion}}</td>
                         <td>{{opTarea.dtTerminado}}</td>
                         <td>{{opTarea.iEstatus}}</td>
-                        <td>{{opTarea.iUsuario}}</td>
-                        <td>{{opTarea.iTipo}}</td>
+                        <td>{{opTarea.iUsuario}}</td>-->
+                        <td>{{opTarea.cActividad}}</td>
+                        <td>{{opTarea.dtSolicitud}}</td>
+                        <td>{{opTarea.dtInicio}}</td>
+                        <td>{{opTarea.cSolicitante}}</td>
+                        <td>{{opTarea.deAvance}}</td>
+                    
                                     
-                        <td>
-                        <button  data-toggle="modal" data-target="#exampleModalLong " class="btn btn-sm btn-primary">
-                        Editar</button> 
+                        <td>                                                                  
+                            <form class="form-row" #formEditar ="ngForm" id ="formEditar" (ngSubmit) = " modificar()">
+                                <div class="modal fade" id="modificar"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Tarea</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div> 
+                                      <div class="modal-body">         
+                                        <div class="form-group"  >    
+                                            <div class="col-md-12">                                             
+                                                <div class="btn-group" >   
+                                                    
+                                                    <section>
+                                                        <label for="Clientes">Clientes</label>
+                                                            <select class="btn btn-outline-info" style="background:white" style="color:grey"  name="Clientes" [(ngModel)]="_catClientes">
+                                                                <option *ngFor="let catCliente of _catClientes" [value]="catCliente.iCliente">
+                                                                    <span>{{ catCliente.cCliente }}</span>
+                                                                </option>
+                                                            </select>
+                                                    </section>
+                                                        
+                                                    <section>
+                                                        <label for="Usuarios">Usuarios</label>
+                                                            <select class="btn btn-outline-info" style="background:white" style="color:grey" name="Usuarios" [(ngModel)]="_catUsuarios" >
+                                                                <option *ngFor="let catUsuario of _catUsuarios" [value]="catUsuario.iUsuario">
+                                                                    <span>{{ catUsuario.cUsuario }}</span>
+                                                                </option>
+                                                            </select>
+                                                    </section>
+
+                                                    <section>
+                                                            <label for="Estatus">Estatus</label>
+                                                            <select class="btn btn-outline-info" style="background:white" style="color:grey" name="Estatus" [(ngModel)]="_catEstTareas">
+                                                                <option *ngFor="let catEstTarea of _catEstTareas" [value]="catEstTarea.cEstatus">
+                                                                    <span>{{ catEstTarea.cEstatus }}</span>
+                                                                </option>
+                                                            </select>
+                                                    </section>
+                                                </div></div>
+                                                <br>
+                                                <div class="btn-group"  >                                                                                                                  
+                                                    <div class="col-md-5">           
+                            
+                                                    <section>
+                                                        <label for="TipoTarea">Tipo de Tarea</label>
+                                                            <select class="btn btn-outline-info" style="background:white" style="color:grey" name="TipoTarea" [(ngModel)]="_catTipoTareas">
+                                                                <option *ngFor="let catTipoTarea of _catTipoTareas" [value]="catTipoTarea.cTipo">
+                                                                    <span>{{ catTipoTarea.cTipo }}</span>
+                                                                </option>
+                                                            </select>
+                                                    </section>                                                                                              
+                                                </div> 
+                                                </div>                
+                                            </div>
+                                             <br>
+                                                 <p>
+                                                    <label>ID</label>
+                                                    <input type="text" readonly onmousedown="return false;" class="form-control" placeholder="ID de la tarea" required autofocus
+                                                    #_opeTarea.iTarea="ngModel" name="iTarea" [(ngModel)]= "_opeTarea.iTarea">                                                                                                                 
+                                                    </p>           
+                                                  <p>
+                                                      <label>Responsable</label>
+                                                      <input type="text" class="form-control" placeholder="Responsable" required autofocus
+                                                      #_opeTarea.cResponsable="ngModel" name="cResponsable" [(ngModel)] = "_opeTarea.cResponsable">
+                                                  </p>
+                                                  <p>
+                                                      <label>Actividad</label>
+                                                      <textarea type="test" class="form-control" placeholder="Actividad" required
+                                                      #_opeTarea.cActividad="ngModel" name="cActividad" [(ngModel)]= "_opeTarea.cActividad"></textarea>
+                                                  </p>
+                                                  <p>
+                                                      <label>Fecha de Solicitud</label>
+                                                      <input type="date" class="form-control" placeholder="Fecha de solicitud" required
+                                                      #_opeTarea.dtSolicitud="ngModel" name="dtSolicitud" [(ngModel)] = '_opeTarea.dtSolicitud'>
+                                                  </p>
+                                                  <p>
+                                                      <label>Fecha de Inicio</label>
+                                                      <input type="date" class="form-control" placeholder="Fecha de Inicio" required
+                                                      #_opeTarea.dtInicio="ngModel" name="dtInicio" [(ngModel)] = '_opeTarea.dtInicio'>
+                                                  </p>
+                                                  <p>
+                                                      <label>Solicitante</label>
+                                                      <input type="text" class="form-control" placeholder="Solicitante" required
+                                                      #_opeTarea.cSolicitante="ngModel" name="cSolicitante" [(ngModel)]= "_opeTarea.cSolicitante">
+                                                  </p>
+                                                                          
+                                                  <p>
+                                                      <label>Descripcion</label>
+                                                      <textarea type="Observaciones" class="form-control" placeholder="descripcion" required
+                                                      #_opeTarea.cDescripcion="ngModel" name="cDescripcion" [(ngModel)]= "_opeTarea.cDescripcion"></textarea>
+                                                  </p>
+                                                  <p>
+                                                      <label>Notas</label>
+                                                      <textarea type="Observaciones" class="form-control" placeholder="Nota" required
+                                                      #_opeTarea.cNota="ngModel" name="cNotas" [(ngModel)]= "_opeTarea.cNota"></textarea>                    
+                                                  </p>
+                                                  <p>
+                                                        <label>Avance</label>
+                                                        <textarea type="text" class="form-control" placeholder="Avance" required
+                                                        #_opeTarea.deAvance="ngModel" name="deAvance" [(ngModel)]= "_opeTarea.deAvance"></textarea>                    
+                                                    </p>
+                                                  <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                      <button type="submit" (click)="refresh()" class="btn btn-primary">Guardar</button>
+                                                  </div>
+                                          </div>
+                                      </div>             
+                                    </div>  
+                                </div>                              
+                             </form>                      
                         </td>
-                        <td>                    
-                        <a href="#exampleModal-{{opTarea.iTarea}}" role="button" 
-                           class="btn btn-sm btn-danger" data-toggle="modal" >
-                            Eliminar
-                        </a>                          
+                        <td>
+                            <button type="text" value="Texto" readonly  (click)="registro(opTarea.iTarea)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modificar">
+                            Editar</button>
+                        </td>
+                           
+                        <td> 
+                            <a href="#exampleModal-{{opTarea.iTarea}}" role="button" 
+                                class="btn btn-sm btn-danger" data-toggle="modal" >
+                                 Eliminar
+                            </a>       
+                        </td>                   
+                                         
                               <!-- Modal-- se agrega el ID concatendo el campo para qeu borre el indicado -->
                              <div class="modal fade" id="exampleModal-{{opTarea.iTarea}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -178,7 +324,7 @@
                                     </div>
                                 </div>
                             </div>                          
-                        </td>
+                        
                     </tr>                                                   
                 </tbody>
             </table>

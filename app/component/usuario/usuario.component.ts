@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router } from '@angular/router';
 import {UsuarioService} from '../../service/usuario.service';
-import {catUsuario} from '../../modelos/catUsuario';
+import { catUsuario } from '../../modelos/catUsuario';
 
 
 @Component({
@@ -66,6 +66,42 @@ export class UsuarioComponent {
         }); // service
     }// lista
 
+
+    /******Trae un solo registro*******/
+    registro(iUsuario: string)  {
+        console.log('leee registro' + iUsuario );
+
+        let respuesta, lista;
+
+        // Se pasa el parametro
+        this._UsuarioService.getRegistro(iUsuario).subscribe((result) => {
+
+            respuesta = result.body;
+
+            lista = respuesta.response.tt_catUsuario.tt_catUsuario;
+
+            lista.forEach(renglon => {
+
+                this._catUsuario = new catUsuario (
+                    renglon.iUsuario,
+                    renglon.cUsuario,
+                    renglon.cPassword,
+                    renglon.cNombre,
+                    renglon.dtNacimiento,
+                    renglon.lActivo,
+                    renglon.cObc
+                );
+
+                console.log(this._catUsuario.iUsuario);
+                console.log(this._catUsuario.cUsuario);
+               // this._catEstTareas.push(this._catEstTarea);
+            });
+        }, (error) => {
+            alert(error);
+
+        }); // service
+    }
+
     crear() {
         console.log('crear');
 
@@ -78,6 +114,20 @@ export class UsuarioComponent {
             alert (error);
         }); // service
     }
+
+    /* Actualiza los registros del fomulario*/
+    modificar () {
+        let respuesta;
+
+        this._UsuarioService.modificar(this._catUsuario).subscribe((result) => {
+            respuesta = result.body;
+        });
+        console.log('modificar c'  + this._catUsuario.iUsuario);
+        console.log(''    +  this._catUsuario.cUsuario);
+
+    }
+
+
 
     eliminar(iUsuario: string) {
         console.log('usuario' + iUsuario);

@@ -27,9 +27,21 @@ export class ClienteService {
     getLista() {
 
          return this._http.get( '/taskService/ctCliente',  {observe: 'response' ,  headers: this.headers });
-
     }
+    /*
+        getRegistro, devueleve solo un solo registro
+    */
+   getRegistro(iCliente: string) {
+      const headers: HttpHeaders  = new HttpHeaders({
+          'AuthKey': '',
+          'AuthToken': '',
+          'Content-Type': 'application/json',
+       });
+       // Se psan los parametros como en el prog..
+        const params = new HttpParams().append('ID', iCliente);
 
+      return this._http.get('/taskService/ctCliente-1/', { headers: headers, observe: 'response', params: params});
+  }
 
     /**
      * Crear un registro en la base de Datos
@@ -53,11 +65,17 @@ export class ClienteService {
      * Modifica registro en la base de Batos
      */
 
-    modificar() {
+    modificar(_catCliente:  catCliente) {
+      const tt_Nuevo = [_catCliente];
+      const request = JSON.stringify({
+          'request':
+          {
+              'NuevoSet': {'tt_Nuevo': tt_Nuevo}
+          }
+      });
+      return this._http.put('/taskService/ctCliente', request, {observe: 'response', headers: this.headers});
 
-
-         return this._http.put( '/taskService/ctCliente',  {observe: 'response' , headers: this.headers });
-    }
+  }
 
     /**
      * Elimina registro en la base de Datos

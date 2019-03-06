@@ -30,14 +30,26 @@ export class UsuarioService {
 
          return this._http.get( '/taskService/ctUsuario',  {observe: 'response' ,  headers: headers });
     }
+    /*
+        getRegistro, devueleve solo un solo regis
+    */
+   getRegistro(iUsuario: string) {
+    const headers: HttpHeaders  = new HttpHeaders({
+        'AuthKey': '',
+        'AuthToken': '',
+        'Content-Type': 'application/json',
+     });
+      const params = new HttpParams().append('ID', iUsuario);
+
+    return this._http.get('/taskService/ctUsuario-1/', { headers: headers, observe: 'response', params: params});
+    }
 
     /**
      * Crear un registro en la base de Datos
      */
-    // tslint:disable-next-line:no-shadowed-variable
-    crear(catUsuario: catUsuario) {
+    crear(_catUsuario: catUsuario) {
 
-        const tt_Nuevo = [catUsuario];
+        const tt_Nuevo = [_catUsuario];
          const request = JSON.stringify({
              'request':
              {
@@ -46,6 +58,20 @@ export class UsuarioService {
          });
          console.log(request);
          return this._http.post('/taskService/ctUsuario', request  , { observe: 'response', headers: this.headers});
+    }
+     /*
+     * Actualiza un registro
+     */
+    modificar(_catUsuario: catUsuario) {
+        const tt_Nuevo = [_catUsuario];
+        const request = JSON.stringify({
+            'request':
+            {
+                'NuevoSet': {'tt_Nuevo': tt_Nuevo}
+            }
+        });
+        return this._http.put('/taskService/ctUsuario', request, {observe: 'response', headers: this.headers});
+
     }
 
 

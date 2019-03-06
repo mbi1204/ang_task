@@ -81,12 +81,59 @@
                     <td>{{ctCliente.cRazonS}}</td>
                     <td>{{ctCliente.lActivo ? "Si":"No"}} </td>
                               
-                    <td><!--Revisar el botonnnn-->
-                        <a href="#exampleModal-{{ctCliente.iCliente}}" data-target="#exampleModalLong" role="button" 
-                            class="btn btn-sm btn-primary" data-toggle="modal" >
-                            Editar
-                        </a>       
-                    </td>
+                    <td>  
+                            <button type="text" value="Texto" readonly  (click)="registro(ctCliente.iCliente)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modificar">
+                            Editar</button> 
+                            
+                            <form class="form-row" #formEditar ="ngForm" id ="formEditar" (ngSubmit) = "modificar()">
+                              <div class="modal fade" id="modificar"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Estatus de tarea</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div> 
+                                        <div class="modal-body">
+                                          <div class="form-group ">
+                                              <p>
+                                                  <label>ID</label>
+                                                  <input type="text" readonly onmousedown="return false;" class="form-control" placeholder="Nombre del estatus" required autofocus
+                                                  #_catCliente.iCliente="ngModel" name="iCliente" [(ngModel)]= "_catCliente.iCliente">
+                                                                                                    
+                                              </p>
+                                            <p>
+                                              <label>Nombre</label>
+                                              <input type="text" class="form-control" placeholder="Nombre del Cliente" required autofocus
+                                              #cCliente="ngModel" name="cCliente"  [(ngModel)] = "_catCliente.cCliente" >                                                                                      
+                                            </p>
+                                            <p>
+                                                <label>Razon Social</label>
+                                                <input type="text" class="form-control" placeholder="Razon Social" required autofocus
+                                                #cRazonS="ngModel" name="cRazonS"  [(ngModel)] = "_catCliente.cRazonS" >                                                                                      
+                                            </p>
+                                            <p>
+                                              <label>Activo</label>
+                                              <input type="checkbox"  aria-label="Text input with checkbox" required autofocus
+                                              #lActivo="ngModel" name="lActivo"   [(ngModel)] = "_catCliente.lActivo" >                                                                                      
+                                            </p>
+                                          </div>
+                                              
+                                          <br>                      
+                                          </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                              <button type="submit" (click)="refresh()" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                      </div>    
+                                  </div>
+                              </div>
+                            </form>                  
+            
+                           
+                         
+                        </td>
                     <td>                    
                         <a href="#exampleModal-{{ctCliente.cCliente}}" role="button" 
                             class="btn btn-sm btn-danger" data-toggle="modal" >

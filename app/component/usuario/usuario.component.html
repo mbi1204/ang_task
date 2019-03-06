@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="text-center" >
             <h1>Usuario</h1> 
-        </div>     
+        </div>      
     </nav> 
     <div class="span6 fondo-color" >
         <!--color linea del menu-->
@@ -40,8 +40,8 @@
                         </p>
                     
                         <p>
-                            <label>Password</label>
-                            <input type="password"  class="form-control" placeholder="Password" required
+                            <label for="password"> Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Password" required
                             #cPassword="ngModel" name="cPassword" [(ngModel)] = '_nuevo.cPassword'>
                         </p>
                         <p>
@@ -51,7 +51,7 @@
                         </p>
                         <p>
                             <label>Fecha de Nacimiento</label>
-                            <input type="password"  class="form-control" placeholder="Fecha completa" required
+                            <input type="date"  class="form-control" placeholder="Fecha completa" required
                             #dtNacimiento="ngModel" name="dtNacimiento" [(ngModel)] = '_nuevo.dtNacimiento'>
                         </p>
                 
@@ -65,7 +65,7 @@
                 </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="sumbit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" (click)="refresh()" class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -78,6 +78,7 @@
             <thead class="thead-default">
                 <tr class="table-primary" >
                     <th>Id Usuario</th>
+                    <th>Usuario</th>
                     <th>Contraseña</th>
                     <th>Nombre</th>
                     <th>Fecha</th>
@@ -89,15 +90,74 @@
                 <!-- imprime valores variable html let of array-modelo ts-->
                 <tr *ngFor="let ctUsuario of _catUsuarios"> 
                     <td>{{ctUsuario.iUsuario}}</td>
+                    <td>{{ctUsuario.cUsuario}}</td>
                     <td>{{ctUsuario.cPassword}}</td>
                     <td>{{ctUsuario.cNombre}}</td>
                     <td>{{ctUsuario.dtNacimiento}}</td>
                     <td>{{ctUsuario.lActivo ? "SI":"NO"}}</td>
                     <td>{{ctUsuario.cObc}}</td>                                  
-                    <td>
-                        <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
-                        Editar</button> 
-                    </td>
+                    <td>  
+
+                         <!--Modal-- Formulario para Editar ccc-->        
+                            <button type="text" value="Texto" readonly  (click)="registro(ctUsuario.iUsuario)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modificar">
+                            Editar</button> 
+                            
+                            <form class="form-row" #formEditar ="ngForm" id ="formEditar" (ngSubmit) = "modificar()">
+                              <div class="modal fade" id="modificar"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Usuario</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div> 
+                                        <div class="modal-body">
+                                          <div class="form-group ">
+                                              <p>
+                                                <label>ID</label>
+                                                <input type="text" readonly onmousedown="return false;" class="form-control" placeholder="ID del Usuario" required autofocus
+                                                #_catUsuario.iUsuario="ngModel" name="iUsuario" [(ngModel)]= "_catUsuario.iUsuario">
+                                                                                                    
+                                              </p>
+                                            <p>
+                                                <label>Nombre del Usuario</label>
+                                                <input type="text" class="form-control" placeholder="Nombre del Usuario" required autofocus
+                                                #_catUsuario.cNombre="ngModel" name="cNombre"  [(ngModel)] = "_catUsuario.cNombre" >                                                                                      
+                                            </p>
+                                            <p>
+                                                <label>Fecha de Nacimiento</label>
+                                                <input type="date" class="form-control" placeholder="Fecha completa" required
+                                                #_catUsuario.dtNacimiento="ngModel" name="dtNacimiento" [(ngModel)] = '_catUsuario.dtNacimiento'>
+                                                </p>
+                                        
+                                            <div class="form-group"></div>
+                                                <p>
+                                                    <label>Observaciones</label>
+                                                    <textarea type="Observaciones" class="form-control" placeholder="Observaciones" required
+                                                     #_catUsuario.cObc="ngModel" name="cObc" [(ngModel)] = '_catUsuario.cObc'></textarea>
+                                                </p>
+                                            <p>
+                                              <label>Activo</label>
+                                              <input type="checkbox" readonly onmousedown="return false;"  aria-label="Text input with checkbox" required autofocus
+                                              #lActivo="ngModel" name="lActivo"   [(ngModel)] = "_catUsuario.lActivo" >                                                                                      
+                                            </p>
+                                          </div>
+                                              
+                                          <br>                      
+                                          </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                              <button type="submit" (click)="refresh()" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                      </div>    
+                                  </div>
+                              </div>
+                            </form>                  
+            
+                           
+                         
+                        </td>
                     <td>
                         <a href="#exampleModal-{{ctUsuario.iUsuario}}" role="button" 
                             class="btn btn-sm btn-danger" data-toggle="modal" >

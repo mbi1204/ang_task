@@ -12,6 +12,13 @@ export class opeTarea {
         public iEstatus: number,
         public iUsuario: number,
         public iTipo: number,
+        public cActividad: string,
+        public dtSolicitud: Date,
+        public dtInicio: Date,
+        public cSolicitante: string,
+        public deAvance: number
+
+
     ) {}
 // tslint:disable-next-line:eofline
 }
