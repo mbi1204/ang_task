@@ -44,5 +44,8 @@
     text-decoration: none;
     display: block;
   }
-
+.btn-outline-info{
+    background: white;
+    color: grey;
+}
  

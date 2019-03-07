@@ -21,28 +21,27 @@
     <div class="text" >     
      
 
-    <div class="container-fluid">                
+        <div class="container-fluid">                
           <!-- Modal -->
-          <form #formNuevo = "ngForm"  (ngSubmit) = "crear()"  id = "formNuevo">
+        <form #formNuevo = "ngForm"  (ngSubmit) = "crear()"  id = "formNuevo">
           <div class="modal fade-md" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Registra una nueva Tarea</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Registra una nueva Tarea</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 
-                <div class="modal-body">
-            
+                    <div class="modal-body">          
                         <div class="modal-body">
                                 <div class="form-row">         
                                                                                                                                
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-2">
                                         <section>
                                             <label for="Clientes">Clientes</label>
-                                            <select class="btn btn-outline-info" style="background:white" style="color:grey"  name="Clientes" [(ngModel)]="_catClientes">
+                                            <select class="btn btn-outline-info"   name="Clientes" [(ngModel)]="_catClientes">
                                                 <option *ngFor="let catCliente of _catClientes" [value]="catCliente.iCliente">
                                                     <span>{{ catCliente.cCliente }}</span>
                                                 </option>
@@ -145,9 +144,9 @@
                             <button type="submit" (click)="refresh()" class="btn btn-primary">Guardar</button>                                                   
                         </div>                                                                                                                      
                     </div>          
-              </div>
+                </div>
             </div>
-        </div>
+          </div>
        </form>
 
 <br><br> 
