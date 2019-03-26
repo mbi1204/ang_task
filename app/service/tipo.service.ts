@@ -93,4 +93,15 @@ export class TipoService {
         return this._http.delete('/taskService/ctTipoTarea', {headers: headers, observe: 'response', params: params});
     }
 
+    busqueda( ipcTipo) {
+        const request  =   JSON.stringify({
+            'request':
+            {
+                'ipcBusqueda'   : ipcTipo
+            }
+          });
+
+        return this._http.post( '/taskService/ctTipoTarea-1', request, { observe: 'response'  , headers: this.headers });
+        }
+
 }

@@ -10,11 +10,26 @@ export class UsuarioService {
 
     constructor(public _http: HttpClient) {
     }
+
     headers: HttpHeaders  = new HttpHeaders({
         'AuthKey': '',
         'AuthToken': '',
         'Content-Type': 'application/json'
      });
+
+
+    postLogin( ipcUsuario, ipcPassword ) {
+        const request  =   JSON.stringify({
+            'request':
+            {
+                'ipcUsuario'   : ipcUsuario,
+                'ipcPassword'  : ipcPassword
+            }
+          });
+
+        return this._http.post( '/taskService/acceso', request, { observe: 'response'  , headers: this.headers });
+        }
+
     /*
         getLista
         Notas: Devuelve el listado de los usuarios
@@ -41,7 +56,7 @@ export class UsuarioService {
      });
       const params = new HttpParams().append('ID', iUsuario);
 
-    return this._http.get('/taskService/ctUsuario-1/', { headers: headers, observe: 'response', params: params});
+    return this._http.get('/taskService/ctUsuario-1', { headers: headers, observe: 'response', params: params});
     }
 
     /**
@@ -89,5 +104,16 @@ export class UsuarioService {
 
         return this._http.delete( '/taskService/ctUsuario',    { headers: headers  , observe: 'response'  , params: params });
     }
+
+    busqueda( ipcUsuario) {
+        const request  =   JSON.stringify({
+            'request':
+            {
+                'ipcBusqueda'   : ipcUsuario
+            }
+          });
+
+        return this._http.post( '/taskService/ctUsuario-1', request, { observe: 'response'  , headers: this.headers });
+        }
 
 }

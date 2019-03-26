@@ -1,18 +1,30 @@
-.container-fluid{
-    background: #6c8399;
+/*.container-fluid{
+    background-color: #6c8399;
+ 
 }
+
+.bg-dark {
+    background-color: #6c8399!important;
+}*/
+
+
+
+
 .fondo-color{
+    border-top-style: groove;
+    border-style: groove;
     padding: 50px 100px 90px 100px;
-    background: rgb(255, 206, 214);
+    background:  whitesmoke;
     width: 100%; 
+    
 }
 .jumbotron{
     padding:3px;
     border-radius: 7px;
-    box-shadow:  purple;
+    box-shadow:  #2f96b4;
     width: 300px;
     height: 70px;
-    color:purple;
+    color:#2f96b4;
     animation-name: deslizamiento;
     animation-duration: 8s;
     animation-iteration-count:infinite;
@@ -23,17 +35,10 @@
     }
     to{
         margin-left: 550px;
-        background:#FADBD8;
+        background: #7e93a7;
     }
 }
-/*sobrea cada submenu
-.navbar-nav .active{
-    border-bottom: 3px solid purple;
-}*/
-/* LINEA DEBAJO DEL MENU
-.container-fluid{
-    border-bottom: 3px solid purple;
-}*/
+
 
 .container-fluid .navbar-nav>a:hover{
     transition: all 300ms;

@@ -12,6 +12,7 @@ import {EstatusService} from '../../service/estatus.service';
 import { catEstTarea } from '../../modelos/catEstTarea';
 import {TipoService} from '../../service/tipo.service';
 import { catTipoTarea } from '../../modelos/catTipoTarea';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 
@@ -26,6 +27,8 @@ import { catTipoTarea } from '../../modelos/catTipoTarea';
 })
 
 export class TareaComponent implements OnInit {
+    ipcBusqueda: String;
+
 // atributos
 
     // crea objetos para la lista
@@ -46,20 +49,21 @@ export class TareaComponent implements OnInit {
 
     public _catTipoTarea: catTipoTarea;
     public _catTipoTareas: Array<catTipoTarea> = [];
+   
 
     constructor( private router: Router,
                 private _TareaService: TareaService,
                 private _ClienteService: ClienteService,
                 private _UsuarioService: UsuarioService,
                 private _EstatusService: EstatusService,
-                private _TipoService: TipoService
+                private _TipoService: TipoService,
+              
 
 
                 ) {
         console.log('tarea Component');
         // Instancia el  objeto
         this._nuevo = new opeTarea (0, 0, '', '', '', null, null, null, 0 , 0 , 0, '', null, null, '', 0  );
-
 
     }
 
@@ -78,7 +82,7 @@ export class TareaComponent implements OnInit {
 
         console.log('tipotarea');
         this.listaTipo();
-
+   
     }
 
     lista() {
@@ -318,6 +322,7 @@ export class TareaComponent implements OnInit {
         this._TareaService.modificar(this._opeTarea).subscribe((result) => {
             respuesta = result.body;
         });
+
         console.log('modificar c'  + this._opeTarea.iTarea);
     }
 
@@ -337,6 +342,52 @@ export class TareaComponent implements OnInit {
         });
     }
 
+
+    busqueda() {
+        let respuesta, lista;
+
+        this._TareaService.busqueda(this.ipcBusqueda).subscribe((result) => {
+
+            respuesta = result.body;
+            lista = respuesta.response.tt_opeTarea.tt_opeTarea;
+            this._opeTareas = []; // limpia la lista
+
+
+            lista.forEach(renglon => {
+
+                // crea objeto
+                this._opeTarea = new opeTarea(
+                    renglon.iTarea,
+                    renglon.iCliente,
+                    renglon.cResponsable,
+                    renglon.cDescripcion,
+                    renglon.cNota,
+                    renglon.dtCreacion,
+                    renglon.dtModificacion,
+                    renglon.dtTerminado,
+                    renglon.iEstatus,
+                    renglon.iUsuario,
+                    renglon.iTipo,
+                    renglon.cActividad,
+                    renglon.dtSolicitud,
+                    renglon.dtInicio,
+                    renglon.cSolicitante,
+                    renglon.deAvance
+
+                );
+               // guarda objeto en la lista
+                this._opeTareas.push(this._opeTarea);
+            });
+
+        }, (error) => {
+
+            alert(error);
+
+        }); // service
+
+    }
+
+ 
 
     refresh(): void {
         window.location.reload();

@@ -1,8 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="text-center" >
-        <h1>Tipo de Tarea</h1>
-    </div> 
-</nav> 
+<menunav></menunav>
+
     <div class="span6 fondo-color">
         <!--color linea del menu-->
         <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
@@ -12,8 +9,9 @@
                 </a>
             <!--Buscador-->
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                  #ipcTipo="ngModel" name="ipcBusqueda" [(ngModel)]='ipcBusqueda'>
+                  <button class="btn btn-outline-primary my-2 my-sm-0" (click)="busqueda()"  type="button">Search</button>
                 </form>
               </nav>
  
@@ -67,7 +65,9 @@
                     <td>{{ctTipoTarea.iTipo}}</td>
                     <td>{{ctTipoTarea.cTipo}}</td>                   
                     <td>{{ctTipoTarea.lActivo ? "Si":"No"}} </td>
-                          
+
+                    
+                    <!--Modal-- Formulario para Editar ccc-->              
                     <td> <button type="text" value="Texto" readonly  (click)="registro(ctTipoTarea.iTipo)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modificar">
                             Editar</button> 
                             
@@ -76,7 +76,7 @@
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Estatus de tarea</h5>
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Tipo de tarea</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>

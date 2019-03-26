@@ -1,8 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="text-center" >
-            <h1>Usuario</h1> 
-        </div>      
-    </nav> 
+<menunav></menunav>
+
     <div class="span6 fondo-color" >
         <!--color linea del menu-->
         <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
@@ -12,15 +9,16 @@
             </a>
             <!--Buscador-->
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" 
+                #ipcUsuario="ngModel" name="ipcBusqueda" [(ngModel)]='ipcBusqueda'>
+                <button class="btn btn-outline-primary my-2 my-sm-0" (click)="busqueda()" type="submit">Search</button>
             </form>
         </nav>
      
     <div class="text" >       
     <div class="container-fluid">
         <!-- Modal -->
-        <form #formNuevo= "ngForm" (ngSubmit) ="crear()" id= "formNuevo">
+    <form #formNuevo= "ngForm" (ngSubmit) ="crear()" id= "formNuevo">
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -33,29 +31,32 @@
                 <div class="modal-body">
                     <div class="form-group ">
     
-                        <p>
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
-                            <input type="text" class="form-control" placeholder="Usuario" required autofocus
-                            #cUsuario="ngModel" name="cUsuario" [(ngModel)] = "_nuevo.cUsuario">       
-                        </p>
-                    
-                        <p>
-                            <label for="password"> Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password" required
-                            #cPassword="ngModel" name="cPassword" [(ngModel)] = '_nuevo.cPassword'>
-                        </p>
-                        <p>
-                            <label>Nombre</label>
-                            <input type="text" class="form-control" placeholder="Nombre del Usuario" required
-                            #cNombre="ngModel" name="cNombre" [(ngModel)] = '_nuevo.cNombre'>
-                        </p>
-                        <p>
-                            <label>Fecha de Nacimiento</label>
-                            <input type="date"  class="form-control" placeholder="Fecha completa" required
-                            #dtNacimiento="ngModel" name="dtNacimiento" [(ngModel)] = '_nuevo.dtNacimiento'>
-                        </p>
+                        <div class="form-row">
+                            <div class="form-group col-md-7">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
+                                <input type="text" class="form-control" placeholder="Usuario" required autofocus
+                                #cUsuario="ngModel" name="cUsuario" [(ngModel)] = "_nuevo.cUsuario">       
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="password"> Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required
+                                #cPassword="ngModel" name="cPassword" [(ngModel)] = '_nuevo.cPassword'>
+                            </div>
+                        </div>    
+                        <div class="form-row">
+                            <div class="form-group col-md-7">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" placeholder="Nombre del Usuario" required
+                                #cNombre="ngModel" name="cNombre" [(ngModel)] = '_nuevo.cNombre'>
+                           </div>
+                  
+                            <div class="form-group col-md-5">
+                                <label>Fecha de Nacimiento</label>
+                                <input type="date"  class="form-control" placeholder="Fecha completa" required
+                                #dtNacimiento="ngModel" name="dtNacimiento" [(ngModel)] = '_nuevo.dtNacimiento'>
+                            </div>
+                        </div>
                 
-                        <div class="form-group"></div>
                             <p>
                                 <label>Observaciones</label>
                                 <textarea type="Observaciones" class="form-control" placeholder="Observaciones" required
@@ -70,7 +71,7 @@
                 </div>
             </div>
         </div>
-    </form>  
+</form>  
     <br><br>
     
     <div class="col-lg-10">
@@ -117,19 +118,26 @@
                                               <p>
                                                 <label>ID</label>
                                                 <input type="text" readonly onmousedown="return false;" class="form-control" placeholder="ID del Usuario" required autofocus
-                                                #_catUsuario.iUsuario="ngModel" name="iUsuario" [(ngModel)]= "_catUsuario.iUsuario">
+                                                #_catUsuario.iUsuario="ngModel" name="iUsuario" [(ngModel)]= "_catUsuario.iUsuario">                                                                                                   
+                                              </p>
+                                              <p>
+                                                <label>Usuario</label>
+                                                <input type="text"  class="form-control" placeholder="Usuario" required autofocus
+                                                #_catUsuario.cUsuario="ngModel" name="cUsuario" [(ngModel)]= "_catUsuario.cUsuario">
                                                                                                     
                                               </p>
-                                            <p>
-                                                <label>Nombre del Usuario</label>
-                                                <input type="text" class="form-control" placeholder="Nombre del Usuario" required autofocus
-                                                #_catUsuario.cNombre="ngModel" name="cNombre"  [(ngModel)] = "_catUsuario.cNombre" >                                                                                      
-                                            </p>
-                                            <p>
-                                                <label>Fecha de Nacimiento</label>
-                                                <input type="date" class="form-control" placeholder="Fecha completa" required
-                                                #_catUsuario.dtNacimiento="ngModel" name="dtNacimiento" [(ngModel)] = '_catUsuario.dtNacimiento'>
-                                                </p>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-7">
+                                                    <label>Nombre del Usuario</label>
+                                                    <input type="text" class="form-control" placeholder="Nombre del Usuario" required autofocus
+                                                    #_catUsuario.cNombre="ngModel" name="cNombre"  [(ngModel)] = "_catUsuario.cNombre" >                                                                                      
+                                                </div>
+                                                <div class="form-group col-md-5">
+                                                    <label>Fecha de Nacimiento</label>
+                                                    <input type="date" class="form-control" placeholder="Fecha completa" required
+                                                    #_catUsuario.dtNacimiento="ngModel" name="dtNacimiento" [(ngModel)] = '_catUsuario.dtNacimiento'>
+                                                </div>
+                                            </div>
                                         
                                             <div class="form-group"></div>
                                                 <p>

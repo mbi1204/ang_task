@@ -1,10 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <div class="text-center" >
-    <h1>Estatus</h1>
-  </div>
-</nav> 
-  <div class="span6 fondo-color">
+<menunav></menunav>
 
+  <div class="span6 fondo-color">
     <!--color linea del menu-->
     <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
         <a class="navbar-brand">
@@ -13,8 +9,9 @@
         </a>
     <!--Buscador-->
         <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+          #ipcEstatus="ngModel" name="ipcBusqueda" [(ngModel)]='ipcBusqueda'>
+          <button class="btn btn-outline-primary my-2 my-sm-0" (click)="busqueda()" type="submit">Search</button>
         </form>
       </nav>
     

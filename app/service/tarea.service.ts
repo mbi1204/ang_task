@@ -91,8 +91,19 @@ export class TareaService {
 
          return this._http.delete( '/taskService/opTarea',    { headers: headers  , observe: 'response'  , params: params });
 
-
     }
+
+    busqueda( ipcActividad) {
+        const request  =   JSON.stringify({
+            'request':
+            {
+                'ipcBusqueda'   : ipcActividad
+            }
+          });
+
+        return this._http.post( '/taskService/opTarea-1', request, { observe: 'response'  , headers: this.headers });
+        }
+
 
 }
 

@@ -1,9 +1,5 @@
+<menunav></menunav>
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="text-center" >
-        <h1>Tarea</h1>  
-    </div>    
-</nav>
 
     <div class="span6 fondo-color">
         <!--color linea del menu-->
@@ -14,13 +10,13 @@
             </a>
             <!--Buscador-->
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                #ipcActividad="ngModel" name="ipcBusqueda" [(ngModel)]='ipcBusqueda'>
+                <button class="btn btn-outline-primary my-2 my-sm-0" (click)="busqueda()" type="submit">Search</button>
             </form>
         </nav>
     <div class="text" >     
-     
-
+  
         <div class="container-fluid">                
           <!-- Modal -->
         <form #formNuevo = "ngForm"  (ngSubmit) = "crear()"  id = "formNuevo">
@@ -152,19 +148,19 @@
 <br><br> 
 
     <div class="responsive">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <table class="table table table-bordered table-hover " >
             <thead class="thead-striped">
                 <tr class="table-primary">
                     <th>Id Tarea</th>
                     <th>Id Cliente</th>
                     <th>Responsable</th>
-                    <th>Descripcion</th>
+                    <th>Actividad</th>
                     <th>Nota</th>                           
                      <!--<th>Estatus</th>
                     <th>Usuario</th>
                     <th>Tipo de tarea</th>-->
-                    <th>Actividad</th>
+                    <th>Descripcion</th>
                     <th>Fecha de Solicitud</th>
                     <th>Fecha de Inicio</th>
                     <th>Solicitante</th>
@@ -181,20 +177,20 @@
                         <td>{{opTarea.iTarea}}</td>
                         <td>{{opTarea.iCliente}}</td>
                         <td>{{opTarea.cResponsable}}</td>
-                        <td>{{opTarea.cDescripcion}}</td>
+                        <td>{{opTarea.cActividad}}</td>
                         <td>{{opTarea.cNota}}</td>
                         <!--<td>{{opTarea.dtCreacion}}</td>
                         <td>{{opTarea.dtModificacion}}</td>
                         <td>{{opTarea.dtTerminado}}</td>
                         <td>{{opTarea.iEstatus}}</td>
                         <td>{{opTarea.iUsuario}}</td>-->
-                        <td>{{opTarea.cActividad}}</td>
+                        <td>{{opTarea.cDescripcion}}</td>
                         <td>{{opTarea.dtSolicitud}}</td>
                         <td>{{opTarea.dtInicio}}</td>
                         <td>{{opTarea.cSolicitante}}</td>
                         <td>{{opTarea.deAvance}}</td>
                     
-                                    
+                    <!--Modal-- Formulario para Editar ccc-->               
                         <td>                                                                  
                             <form class="form-row" #formEditar ="ngForm" id ="formEditar" (ngSubmit) = " modificar()">
                                 <div class="modal fade-md " id="modificar"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -218,26 +214,26 @@
                                                 <div class="form-group col-md-2">
                                                     <section>
                                                         <label for="Clientes">Clientes</label>
-                                                        <select class="btn btn-outline-info" ng-change="registro()" #_nuevo.iCliente="ngModel" name="iCliente" [(ngModel)] = "_nuevo.iCliente">
-                                                            <option *ngFor="let catCliente of _catClientes" [value]="catCliente.iCliente">
+                                                        <select class="btn btn-outline-info" #_nuevo.iCliente="ngModel" name="iCliente" [(ngModel)] = "_nuevo.iCliente" >
+                                                            <option *ngFor="let catCliente of _catClientes"  [value]="catCliente.iCliente" >
                                                                 <span>{{ catCliente.cCliente }}</span>
-                                                            </option>
+                                                             </option>
                                                         </select>
                                                     </section>
                                                 </div>
                                                     
-                                                <div class="form-group col-md-2">
+                                                <div class="form-group col-md-3">
                                                     <section>
                                                         <label for="Usuarios">Usuarios</label>
-                                                        <select class="btn btn-outline-info" #_nuevo.iUsuario="ngModel" name="iUsuario" [(ngModel)] = "_nuevo.iUsuario"  >
+                                                        <select class="btn btn-outline-info"  #_nuevo.iUsuario="ngModel" name="iUsuario" [(ngModel)] = "_nuevo.iUsuario" >
                                                             <option *ngFor="let catUsuario of _catUsuarios" [value]="catUsuario.iUsuario">
                                                                 <span>{{ catUsuario.cUsuario }}</span>
                                                             </option>
                                                         </select>
                                                     </section>
-                                                </div>  
+                                                </div>    
 
-                                                <div class="form-group col-md-2">
+                                                <div class="form-group col-md-3">
                                                     <section>
                                                         <label for="Estatus">Estatus</label>
                                                         <select class="btn btn-outline-info" #_nuevo.iEstatus="ngModel" name="iEstatus" [(ngModel)] = "_nuevo.iEstatus">
@@ -357,8 +353,7 @@
                                       </div>
                                     </div>
                                 </div>
-                            </div>                          
-                        
+                            </div>                                    
                     </tr>                                                   
                 </tbody>
             </table>

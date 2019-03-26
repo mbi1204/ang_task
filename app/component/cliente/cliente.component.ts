@@ -14,6 +14,8 @@ import { catCliente } from '../../modelos/catCliente';
 })
 
 export class ClienteComponent {
+    ipcBusqueda: String;
+
 // atributos
 
     // crea objetos para la lista
@@ -65,7 +67,7 @@ export class ClienteComponent {
                     renglon.cRazonS,
                     renglon.lActivo
                 );
-               // guarda objeto en la lista
+               // guarda objeto en la lista(array)
                 this._catClientes.push(this._catCliente);
             });
 
@@ -145,6 +147,37 @@ export class ClienteComponent {
 
     }
 
+    busqueda() {
+
+        let respuesta, lista;
+
+        this._ClienteService.busqueda(this.ipcBusqueda).subscribe((result) => {
+
+            respuesta = result.body;
+            lista = respuesta.response.tt_catCliente.tt_catCliente;
+            this._catClientes = []; // limpia la lista
+
+
+            // itera la lista del rest para convertir en objetos type script
+            lista.forEach(renglon => {
+
+                // crea objeto
+                this._catCliente = new catCliente(
+                    renglon.iCliente,
+                    renglon.cCliente,
+                    renglon.cRazonS,
+                    renglon.lActivo
+                );
+               // guarda objeto en la lista
+                this._catClientes.push(this._catCliente);
+            });
+
+        }, (error) => {
+            // error
+
+            alert(error);
+        }); 
+    }
 
 
     refresh(): void {

@@ -26,7 +26,7 @@ export class ClienteService {
 
     getLista() {
 
-         return this._http.get( '/taskService/ctCliente',  {observe: 'response' ,  headers: this.headers });
+        return this._http.get('/taskService/ctCliente', {observe: 'response', headers: this.headers});
     }
     /*
         getRegistro, devueleve solo un solo registro
@@ -97,12 +97,24 @@ export class ClienteService {
             'Content-Type': 'application/json' ,
          });
 
-         const params = new HttpParams().append('ID', iCliente);
+        const params = new HttpParams().append('ID', iCliente);
 
 
          return this._http.delete( '/taskService/ctCliente',    { headers: headers  , observe: 'response'  , params: params });
 
-
     }
 
+    busqueda( ipcCliente) {
+        const request  =   JSON.stringify({
+            'request':
+            {
+                'ipcBusqueda'   : ipcCliente
+            }
+          });
+
+        return this._http.post( '/taskService/ctCliente-1', request, { observe: 'response'  , headers: this.headers });
+        }
+
 }
+
+

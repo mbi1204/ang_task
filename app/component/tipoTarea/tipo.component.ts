@@ -13,6 +13,7 @@ import { catTipoTarea } from '../../modelos/catTipoTarea';
 })
 
 export class TipoComponent {
+    ipcBusqueda: String;
 
     // Objetos
     public _catTipoTarea: catTipoTarea;
@@ -138,6 +139,33 @@ export class TipoComponent {
             alert (error);
         });
     }
+
+    busqueda() {
+        let respuesta, lista;
+
+        this._TipoService.busqueda(this.ipcBusqueda).subscribe((result) => {
+
+            respuesta = result.body;
+            lista = respuesta.response.tt_catTipoTarea.tt_catTipoTarea;
+            this._catTipoTareas = []; // limpia la lista
+
+
+            lista.forEach(renglon => {
+                // Crea objeto
+                this._catTipoTarea = new catTipoTarea (
+                    renglon.iTipo,
+                    renglon.cTipo,
+                    renglon.lActivo
+                );
+                // guarda el objeto en la lista
+                this._catTipoTareas.push(this._catTipoTarea);
+                });
+
+            }, (error) => {
+                alert(error);
+        });
+    }
+
 
     refresh(): void {
         window.location.reload();

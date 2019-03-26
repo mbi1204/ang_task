@@ -90,6 +90,16 @@ export class EstatusService {
     }
 
 
+    busqueda( ipcEstatus) {
+        const request  =   JSON.stringify({
+            'request':
+            {
+                'ipcBusqueda'   : ipcEstatus
+            }
+          });
+
+        return this._http.post( '/taskService/ctEstTarea-1', request, { observe: 'response'  , headers: this.headers });
+        }
 
 
 }

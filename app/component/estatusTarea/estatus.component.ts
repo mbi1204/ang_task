@@ -13,6 +13,8 @@ import { catEstTarea } from '../../modelos/catEstTarea';
 })
 
 export class EstatusComponent implements OnInit {
+   ipcBusqueda: String;
+
     // atributos
 
     // crea objetos para la lista
@@ -149,6 +151,33 @@ export class EstatusComponent implements OnInit {
         }); // service
 
 }
+
+busqueda() {
+    let respuesta, lista;
+
+    this._EstatusService.busqueda(this.ipcBusqueda).subscribe((result) => {
+
+        respuesta = result.body;
+        lista = respuesta.response.tt_catEstTarea.tt_catEstTarea;
+        this._catEstTareas = []; // limpia al mostrar
+
+
+        lista.forEach(renglon => {
+
+            this._catEstTarea = new catEstTarea(
+                renglon.iEstatus,
+                renglon.cEstatus,
+                renglon.lActivo
+            );
+            this._catEstTareas.push(this._catEstTarea);
+        });
+    }, (error) => {
+
+        alert(error);
+
+    }); // service
+}
+
 
     refresh(): void {
       window.location.reload();

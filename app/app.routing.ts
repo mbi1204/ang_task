@@ -12,6 +12,7 @@ import {TipoComponent} from '../app/component/tipoTarea/tipo.component';
 import {UsuarioComponent} from '../app/component/usuario/usuario.component';
 import { TareaComponent } from '../app/component/tarea/tarea.component';
 import { SubtareaComponent } from '../app/component/subtarea/subtarea.component';
+import { MenunavComponent } from '../app/component/menunav/menunav.component';
 
 const appRoutes: Routes=[
     {path:'', component : LoginComponent},
@@ -24,6 +25,7 @@ const appRoutes: Routes=[
     {path:'usuario', component:UsuarioComponent},
     {path: 'tarea', component:TareaComponent},
     {path: 'subtarea', component:SubtareaComponent},
+    {path:'menunav' , component : MenunavComponent},
     {path:'**', component : LoginComponent},
 
 ];

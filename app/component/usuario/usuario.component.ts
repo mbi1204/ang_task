@@ -12,6 +12,8 @@ import { catUsuario } from '../../modelos/catUsuario';
 })
 
 export class UsuarioComponent {
+    ipcBusqueda: String;
+
     // atributos
 
     // crea objetos para la lista
@@ -79,6 +81,7 @@ export class UsuarioComponent {
             respuesta = result.body;
 
             lista = respuesta.response.tt_catUsuario.tt_catUsuario;
+           
 
             lista.forEach(renglon => {
 
@@ -142,6 +145,43 @@ export class UsuarioComponent {
             alert (error);
         }); // service
     }
+
+    busqueda() {
+        let respuesta, lista;
+
+        this._UsuarioService.busqueda(this.ipcBusqueda).subscribe((result) => {
+
+            respuesta = result.body;
+            lista = respuesta.response.tt_catUsuario.tt_catUsuario;
+            this._catUsuarios = [];
+
+
+            lista.forEach(renglon => {
+
+                // crea Objeto
+                this._catUsuario = new catUsuario (
+                    renglon.iUsuario,
+                    renglon.cUsuario,
+                    renglon.cPassword,
+                    renglon.cNombre,
+                    renglon.dtNacimiento,
+                    renglon.lActivo,
+                    renglon.cObc
+                );
+                this._catUsuarios.push(this._catUsuario);
+
+
+            }); console.log('Entro aquiiiii' + this.ipcBusqueda );
+
+
+        }, (error) => {
+
+            alert(error);
+
+        }); // service
+
+    }
+
 
     refresh(): void {
         window.location.reload();
