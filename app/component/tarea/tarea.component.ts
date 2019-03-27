@@ -12,8 +12,7 @@ import {EstatusService} from '../../service/estatus.service';
 import { catEstTarea } from '../../modelos/catEstTarea';
 import {TipoService} from '../../service/tipo.service';
 import { catTipoTarea } from '../../modelos/catTipoTarea';
-import { FormGroup, FormBuilder } from '@angular/forms';
-
+import { FormGroup, FormBuilder, } from '@angular/forms';
 
 
 @Component ({
@@ -28,6 +27,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 export class TareaComponent implements OnInit {
     ipcBusqueda: String;
+    myForm: FormGroup;
+    defaultValue = catCliente;
+    iCliente: number;
 
 // atributos
 
@@ -49,7 +51,8 @@ export class TareaComponent implements OnInit {
 
     public _catTipoTarea: catTipoTarea;
     public _catTipoTareas: Array<catTipoTarea> = [];
-   
+    data: { selectedOption: any; };
+
 
     constructor( private router: Router,
                 private _TareaService: TareaService,
@@ -57,10 +60,10 @@ export class TareaComponent implements OnInit {
                 private _UsuarioService: UsuarioService,
                 private _EstatusService: EstatusService,
                 private _TipoService: TipoService,
-              
+                private fb: FormBuilder ) {
 
 
-                ) {
+
         console.log('tarea Component');
         // Instancia el  objeto
         this._nuevo = new opeTarea (0, 0, '', '', '', null, null, null, 0 , 0 , 0, '', null, null, '', 0  );
@@ -82,7 +85,8 @@ export class TareaComponent implements OnInit {
 
         console.log('tipotarea');
         this.listaTipo();
-   
+
+      
     }
 
     lista() {
@@ -387,7 +391,7 @@ export class TareaComponent implements OnInit {
 
     }
 
- 
+
 
     refresh(): void {
         window.location.reload();
