@@ -34,7 +34,8 @@ import { MenunavComponent } from '../app/component/menunav/menunav.component';
     UsuarioComponent,
     TareaComponent,
     SubtareaComponent,
-    MenunavComponent
+    MenunavComponent,
+   
 
 
 

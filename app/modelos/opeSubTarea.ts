@@ -1,6 +1,7 @@
 // tslint:disable-next-line:class-name
 export class opeSubTarea {
     constructor (
+        
         public iSubTarea: number,
         public iTarea: number,
         public cDescripcion:  string,

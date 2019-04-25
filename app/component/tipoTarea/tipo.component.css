@@ -1,7 +1,15 @@
-.fondo-color{
+/*.fondo-color{
     padding: 50px 100px 100px 100px;
     background: #6c8399;
 	width: 100%;
+}*/
+
+.fondo-color{
+    padding: 50px 100px 100px 100px;
+    background: linear-gradient(132deg, #6c8399, #A3CCE1, #CCC5CF  , #CEF6F5, #629DBC, #A3CCE1,#7CBDD4, #6c8399, #CCC5CF, #ECC3D3,
+    #4293A4, #C0D2E4, #CEF6F5, #A3CCE1  , #CCC5CF  ,#DFCBF2  , #629DBC,#6c8399,#A4DEE9  , #7CBDD4, #6c8399  ,#ECC3D3, #A3CCE1, #6c8399  );
+    background-size: 400% 400%;
+    animation: BackgroundGradient 30s ease infinite;
 }
 .text{
     background:#CDCFD0;
@@ -44,4 +52,6 @@
 
 
 
-  
+.modal-body{
+    color:rgb(49, 146, 236); 
+}

@@ -3,21 +3,20 @@
 <div class="span6 fondo-color" >
     <!--color linea del menu-->
     <nav class="navbar navbar-light" color="purple;" style="background-color: #90A5B3;">
-        <a class="navbar-brand">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-            Nueva Subtarea</button>                             
+        <a class="navbar-brand">                            
         </a>
         <!--Buscador-->
         <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            #ipcActividad="ngModel" name="ipcBusqueda" [(ngModel)]='ipcBusqueda'>
+            <button class="btn btn-outline-primary my-2 my-sm-0" (click)="busqueda()" type="submit">Search</button>
         </form>
     </nav>
 <div class="text" >       
     <div class="container-fluid">
-     <!-- Modal -->
-            <form #formNuevo= "ngForm" (ngSubmit) = "crear()" id = "formNuevo"> 
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"  aria-hidden="true">
+     <!-- Modal crear nueva Subtarea -->
+     <form #formNuevo= "ngForm" id = "formNuevoSub" (ngSubmit) = "crearSub()"> 
+            <div class="modal fade" id="crearSub" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"  aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -28,28 +27,39 @@
                       </div>
 
                     <div class="modal-body">
-                
+                        <div class="form-row">         
+                                                                                                                               
+                            <div class="form-group col-md-2">
+                                <label for="ID">ID</label></div>
+                                    <div class="form-group col-sm-1">
+                                        <input type="text" readonly onmousedown="return false;" class="form-control" placeholder="ID de la tarea" required autofocus
+                                        #_nuevo.iTarea="ngModel" name="iTarea" [(ngModel)]= "_opeTarea.iTarea" 
+                                        *ngFor="let opeTarea of _opeTareas" [value]="_opeTarea.iTarea">  
+                                                                                                                                                  
+                                    </div>                            
+                            </div>
+
                         <div class="form-group ">
                             <p>
                                 <label>Descripcion</label>
                                 <input type="text" class="form-control" placeholder="Descripcion de " required autofocus
-                                #cDescripcion="ngModel" name="cDescripcion" [(ngModel)] = "_nuevo.cDescripcion"><!--_nuevo es elobjeto y cCliente el campo-->
+                                #_nuevo.cDescripcion="ngModel" name="cDescripcion" [(ngModel)] = "_nuevo.cDescripcion"><!--_nuevo es elobjeto y cCliente el campo-->
                             </p>
                     
                             <p>
                                 <label>Notas</label>
                                 <input type="text" class="form-control" placeholder="Notas" required
-                                #cNotas="ngModel" name="cNotas" [(ngModel)] = "_nuevo.cNotas"  />                      
+                                #_nuevo.cNotas="ngModel" name="cNotas" [(ngModel)] = "_nuevo.cNotas">                      
                             </p>
                             <p>
                                 <label>Fecha</label>
-                                <input type="text" class="form-control" placeholder="Fecha" required
-                                #dtCreacion="ngModel" name="dtCreacion" [(ngModel)] = "_nuevo.dtCreacion"  />                      
+                                <input type="date" class="form-control" placeholder="Fecha" required
+                                #_nuevo.dtCreacion="ngModel" name="dtCreacion" [(ngModel)] = "_nuevo.dtCreacion"  >                      
                             </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" (click)="refresh()"  class="btn btn-primary">Guardar</button>
+                            <button type="submit"   class="btn btn-primary">Guardar</button>
                         
                         </div>
                     </div> 
@@ -58,9 +68,8 @@
         </div>
     </form>
        
-    <div class="col-lg-10">
-        <table class="table table table-bordered table-hover " >
-            <thead class="thead-striped">
+    <div class="table-responsive-xl">
+            <table class="table table-hover">
                 <tr class="table-primary" >
                     <th>Id SubTarea</th>
                     <th>Id Tarea</th>
@@ -68,7 +77,7 @@
                     <th>Notas</th>
                     <th>Creado</th>
                 </tr>
-            </thead>
+        
             <tbody>
              <!-- imprime valores variable html let of array ts-->
                 <tr *ngFor="let opSubTarea of _opeSubTareas"> 
@@ -78,38 +87,97 @@
                     <td>{{opSubTarea.cNotas}}</td>
                     <td>{{opSubTarea.dtCreado}} </td>
                       
-                        <td>
-                            <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-sm btn-primary">
-                            Editar</button> 
-                        </td>
-                        <td>
-                            <button type="button"  class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal" >
-                            Eliminar</button>
-                          
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
+                        <!--Modal-- Formulario para Editar ccc-->               
+                          <td>                                         
+                            <form class="form-row" #formEditaSub ="ngForm" id ="formEditaSub" (ngSubmit) = " modificaSub()">
+                                <div class="modal fade-md " id="modificaSub"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-md">
+                                      <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Elimina subtarea</h5>
+                                            <h5 class="modal-title" id="myLargeModalLabel">SubTarea</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
-                                        </div>
+                                        </div> 
                                         <div class="modal-body">
-                                            ¿Estas seguro que quieres borrar la subtarea<strong>{{opSubTarea.cDescripcion}}</strong> ?
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>{{opSubTarea.cDescripcion}}</p> 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <button type="button"  class="btn btn-danger">Eliminar</button>
-                                        </div>
+                                            <div class="form-row">                                                      
+                                                <div class="form-group col-md-3">
+                                                    <label for="ID">ID Subtarea</label></div>
+                                                    <div class="form-group col-sm-2">
+                                                        <input type="text" readonly onmousedown="return false;" class="form-control" placeholder="ID de la Subtarea" required autofocus
+                                                        #_opeSubTarea.iSubTarea="ngModel" name="iSubTarea" [(ngModel)]= "_opeSubTarea.iSubTarea">                                                                                                                 
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <label for="ID">ID Tarea</label></div>
+                                                        <div class="form-group col-sm-2">
+                                                            <input type="text" readonly onmousedown="return false;" class="form-control" placeholder="ID de la tarea" required autofocus
+                                                            #_opeTarea.iTarea="ngModel" name="iTarea" [(ngModel)]= "_opeSubTarea.iTarea">                                                                                                                 
+                                                        </div>
+                                             </div>  
+                                               
+                                             <p>
+                                                    <label>Descripcion</label>
+                                                    <input type="text" class="form-control" placeholder="Descripcion de " required 
+                                                    #_opeSubTarea.cDescripcion="ngModel" name="cDescripcion" [(ngModel)] = "_opeSubTarea.cDescripcion"><!--_nuevo es elobjeto y cCliente el campo-->
+                                                </p>
+                                        
+                                                <p>
+                                                    <label>Notas</label>
+                                                    <input type="text" class="form-control" placeholder="Notas" required
+                                                    #_opeSubTarea.cNotas="ngModel" name="cNotas" [(ngModel)] = "_opeSubTarea.cNotas">                      
+                                                </p>
+                                                <p>
+                                                    <label>Fecha</label>
+                                                    <input type="date" class="form-control" placeholder="Fecha" required
+                                                    #_opeSubTarea.dtCreacion="ngModel" name="dtCreacion" [(ngModel)] = "_opeSubTarea.dtCreacion">                      
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                <button type="submit"   class="btn btn-primary">Guardar</button>
+                                            
+                                            </div>  
+                                      </div>
+                                    </div>                                                                                                                                                                                               
+                                </div>            
+                        </form> 
+                    </td>
+                    
+                     <td>
+                            <button type="button" value="Texto" readonly  (click)="registro(opSubTarea.iSubTarea)" class="btn btn-sm btn-primary" 
+                            data-toggle="modal" data-target="#modificaSub">
+                            Editar</button>
+                        </td>
+                           
+                        <td> 
+                            <a href="#exampleModal-{{opSubTarea.iSubTarea}}" role="button" 
+                                class="btn btn-sm btn-danger" data-toggle="modal" >
+                                 Eliminar
+                            </a>       
+                        </td>
+                        <!-- Modal-- se agrega el ID concatendo el campo para que borre el indicado -->
+                        <div class="modal fade" id="exampleModal-{{opSubTarea.iSubTarea}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar tarea</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                            ¿Estas seguro que quieres borrar la Subtarea  
+                                            <strong>{{opSubTarea.iSubTarea}}  {{opSubTarea.cDescripcion}}</strong>
+                                            de la tarea
+                                            <strong>{{opSubTarea.iTarea}}</strong> ?
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" (click)="eliminar(opSubTarea.iSubTarea)" (click)="refresh()" class="btn btn-danger">Eliminar</button>
+                                      </div>
                                     </div>
                                 </div>
-                            </div> 
-                        </td>                                      
+                            </div>  
                     </tr>                    
             </tbody>
         </table>

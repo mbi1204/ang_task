@@ -7,7 +7,7 @@ export class UsuarioService {
     public _catusuario: catUsuario;
     public _catUsuarios: Array<catUsuario> = [];
     public tt_Nuevos: Array<catUsuario> = [];
-
+    user: any;
     constructor(public _http: HttpClient) {
     }
 

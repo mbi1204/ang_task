@@ -12,7 +12,8 @@ import {EstatusService} from '../../service/estatus.service';
 import { catEstTarea } from '../../modelos/catEstTarea';
 import {TipoService} from '../../service/tipo.service';
 import { catTipoTarea } from '../../modelos/catTipoTarea';
-import { FormGroup, FormBuilder, } from '@angular/forms';
+import { opeSubTarea } from '../../modelos/opeSubTarea';
+import {SubtareaService} from '../../service/subtarea.service';
 
 
 @Component ({
@@ -20,19 +21,16 @@ import { FormGroup, FormBuilder, } from '@angular/forms';
     selector : 'tarea',
     templateUrl: 'tarea.component.html',
     styleUrls: ['tarea.component.css'],
-    providers: [TareaService, ClienteService, UsuarioService, EstatusService, TipoService]
+    providers: [TareaService, ClienteService, UsuarioService, EstatusService, TipoService, SubtareaService]
 
 
 })
 
 export class TareaComponent implements OnInit {
     ipcBusqueda: String;
-    myForm: FormGroup;
-    defaultValue = catCliente;
-    iCliente: number;
+    miopeSubTarea: string;
 
-// atributos
-
+    // atributos
     // crea objetos para la lista
     public _opeTarea: opeTarea;
     // lista del modelo
@@ -51,8 +49,10 @@ export class TareaComponent implements OnInit {
 
     public _catTipoTarea: catTipoTarea;
     public _catTipoTareas: Array<catTipoTarea> = [];
-    data: { selectedOption: any; };
 
+    public _opeSubTarea: opeSubTarea;
+    public _opeSubTareas: Array<opeSubTarea> = [];
+    public _nuevoSubTarea: opeSubTarea;
 
     constructor( private router: Router,
                 private _TareaService: TareaService,
@@ -60,17 +60,20 @@ export class TareaComponent implements OnInit {
                 private _UsuarioService: UsuarioService,
                 private _EstatusService: EstatusService,
                 private _TipoService: TipoService,
-                private fb: FormBuilder ) {
+                private _SubtareaService: SubtareaService
+             ) {
 
 
 
         console.log('tarea Component');
         // Instancia el  objeto
         this._nuevo = new opeTarea (0, 0, '', '', '', null, null, null, 0 , 0 , 0, '', null, null, '', 0  );
-
+        // instancia el nuevo objeto para crear nueva subtarea
+        this._nuevoSubTarea = new opeSubTarea(0 , 0, '', '', null, null, null);
     }
 
     ngOnInit(): void {
+        // Se imprimen las lista para mostrarlas en la pantalla
         console.log('tarea.component.ts');
         this.lista();
 
@@ -86,8 +89,8 @@ export class TareaComponent implements OnInit {
         console.log('tipotarea');
         this.listaTipo();
 
-      
     }
+
 
     lista() {
         console.log('lista()');
@@ -141,12 +144,15 @@ export class TareaComponent implements OnInit {
     } // lista
 
     /******Trae un solo registro*******/
-    registro(iTarea: string) {
+    registro(iTarea: number) {
         console.log('lee registro' + iTarea);
 
         let respuesta, lista;
 
-        this._TareaService.getRegistro(iTarea).subscribe((result) => {
+        // El modelo _nuevoSubTarea guarda el valor iTarea
+        this._nuevoSubTarea.iTarea = iTarea;
+
+        /*this._TareaService.getRegistro(iTarea).subscribe((result) => {
             respuesta = result.body;
 
             lista = respuesta.response.tt_opeTarea.tt_opeTarea;
@@ -175,7 +181,7 @@ export class TareaComponent implements OnInit {
                 );
                     console.log(this._opeTarea.iTarea);
             });
-        });
+        });*/
     }
 
 
@@ -392,8 +398,36 @@ export class TareaComponent implements OnInit {
     }
 
 
+    crearSub() {
+
+        console.log('crearSub');
+
+        let respuesta;
+
+
+        this._SubtareaService.crearSub(this._nuevoSubTarea).subscribe((result) =>  {
+            // guardo la respuesta en una variable del body
+            respuesta = result.body;
+
+        }, (error) => {
+
+            alert (error);
+
+        }); // service*/
+    }
+
+
+   Subtareas(miopeTarea: opeTarea) {
+
+    /**cambia al metodo Subtareas y muestra las subtareas existentes***/
+    this.router.navigate(['/subtarea', miopeTarea.iTarea, miopeTarea.cDescripcion]);
+
+   // console.log('Tu selecionaste la tarea', miopeTarea.iTarea + miopeTarea.cDescripcion);
+
+}
 
     refresh(): void {
         window.location.reload();
     }
+
 }

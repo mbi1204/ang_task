@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import {ClienteService} from '../../service/cliente.service';
 import { catCliente } from '../../modelos/catCliente';
-
+import { catUsuario } from '../../modelos/catUsuario';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -13,8 +13,10 @@ import { catCliente } from '../../modelos/catCliente';
 
 })
 
-export class ClienteComponent {
+export class ClienteComponent implements OnInit {
     ipcBusqueda: String;
+    user: any ;
+    ipcUsuario: string;
 
 // atributos
 
@@ -25,18 +27,28 @@ export class ClienteComponent {
     // guarda la lista nueva
     public _nuevo: catCliente;
 
-    constructor( private _ClienteService: ClienteService) {
+    public _catUsuario: catUsuario;
+
+
+    constructor(private router: Router,
+         private _ClienteService: ClienteService,
+        ) {
 
         console.log('cliente Component');
         this._nuevo = new catCliente(0, '', '' , true);
-
+        
     }
 
     ngOnInit(): void {
 
-       console.log('cliente.component.ts');
-       this.lista();
+        console.log('cliente.component.ts');
+        this.lista();
 
+        /*2 Se guarda la funcion del localStorage en la variable user */
+        this.user = JSON.parse(localStorage.getItem('miNombre'));
+
+      /*1 Se trae el nombre del index(etiqueta) de setItem*/
+      //  alert('miNombre' + localStorage.getItem('miNombre'));
     }
 
 
@@ -176,7 +188,7 @@ export class ClienteComponent {
             // error
 
             alert(error);
-        }); 
+        });
     }
 
 

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {opeTarea} from '../modelos/opeTarea';
+import { opeSubTarea } from '../modelos/opeSubTarea';
 
 
 
@@ -8,6 +9,7 @@ import {opeTarea} from '../modelos/opeTarea';
 
 @Injectable()
 export class TareaService {
+    public _opeSubTarea: opeSubTarea;
 
 
     constructor(public _http: HttpClient) {
@@ -25,7 +27,6 @@ export class TareaService {
     */
 
     getLista() {
-
 
          return this._http.get( '/taskService/opTarea',  {observe: 'response' ,  headers: this.headers });
     }

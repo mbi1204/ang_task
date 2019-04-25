@@ -1,9 +1,9 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-//Componentes
+// Componentes
 
-//componentes
+// componentes
 import { ClienteComponent } from '../app/component/cliente/cliente.component';
 import { EstatusComponent } from './component/estatusTarea/estatus.component';
 import { LoginComponent } from '../app/component/login/login.component';
@@ -14,22 +14,22 @@ import { TareaComponent } from '../app/component/tarea/tarea.component';
 import { SubtareaComponent } from '../app/component/subtarea/subtarea.component';
 import { MenunavComponent } from '../app/component/menunav/menunav.component';
 
-const appRoutes: Routes=[
-    {path:'', component : LoginComponent},
-    {path:'', redirectTo : 'login', pathMatch: 'full'},
-    {path:'cliente', component : ClienteComponent },
+const appRoutes: Routes = [
+    {path: '', component : LoginComponent},
+    {path: '', redirectTo : 'login', pathMatch: 'full'},
+    {path: 'cliente', component : ClienteComponent },
     {path: 'estatus', component : EstatusComponent},
-    {path:'login', component : LoginComponent},
-    {path:'menu' , component : MenuComponent},
-    {path:'tipo' , component : TipoComponent},
-    {path:'usuario', component:UsuarioComponent},
-    {path: 'tarea', component:TareaComponent},
-    {path: 'subtarea', component:SubtareaComponent},
-    {path:'menunav' , component : MenunavComponent},
-    {path:'**', component : LoginComponent},
+    {path: 'login', component : LoginComponent},
+    {path: 'menu' , component : MenuComponent},
+    {path: 'tipo' , component : TipoComponent},
+    {path: 'usuario', component: UsuarioComponent},
+    {path: 'tarea', component: TareaComponent},
+    {path: 'subtarea/:iTarea/:cDescripcion', component: SubtareaComponent},
+    {path: 'menunav' , component : MenunavComponent},
+    {path: '**', component : LoginComponent},
 
 ];
 
 
 export const appRoutingProviders: any[] = [];
-export const routing : ModuleWithProviders = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

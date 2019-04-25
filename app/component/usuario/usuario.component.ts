@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import {UsuarioService} from '../../service/usuario.service';
 import { catUsuario } from '../../modelos/catUsuario';
@@ -11,7 +11,7 @@ import { catUsuario } from '../../modelos/catUsuario';
     providers: [UsuarioService]
 })
 
-export class UsuarioComponent {
+export class UsuarioComponent implements OnInit {
     ipcBusqueda: String;
 
     // atributos

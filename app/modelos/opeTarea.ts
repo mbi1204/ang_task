@@ -18,7 +18,6 @@ export class opeTarea {
         public cSolicitante: string,
         public deAvance: number
 
-
     ) {}
-// tslint:disable-next-line:eofline
 }
+
